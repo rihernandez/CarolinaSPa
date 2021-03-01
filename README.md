@@ -30,7 +30,7 @@ npm install
 If you need access to the instance you can run the following command on your terminal :
 
 ```bash
-docker exec -it carolina-project_db_1 bash
+docker exec -it replace_with_name_of_your_container bash
 ```
 
 Ensure to perform a login to the database with valid credentials :
