@@ -3,7 +3,8 @@ module.exports = (sequelize, Sequelize) => {
     {
         ID_EstadoCita: {
             type: Sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
 
         Descripcion: {

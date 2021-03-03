@@ -22,7 +22,9 @@ db.sequelize = sequelize;
 //testing
 db.test = require("./test.model.js")(sequelize, Sequelize);
 db.estadofactura = require("./estadofactura")(sequelize, Sequelize);
+db.citas = require("./citas")(sequelize, Sequelize);
 db.estadocita = require("./estadocita")(sequelize, Sequelize);
-db.cliente = require("./cliente")(sequelize, Sequelize);
+db.cliente = require("./clientes")(sequelize, Sequelize);
+
 
 module.exports = db;
