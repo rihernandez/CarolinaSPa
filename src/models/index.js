@@ -19,6 +19,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Please proceed to update this file with each models that you created.
+//testing
 db.test = require("./test.model.js")(sequelize, Sequelize);
 
 module.exports = db;
