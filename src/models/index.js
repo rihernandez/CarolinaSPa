@@ -30,6 +30,10 @@ db.estadofactura = require("./estadofactura")(sequelize, Sequelize);
 db.citas = require("./citas")(sequelize, Sequelize);
 db.estadocita = require("./estadocita")(sequelize, Sequelize);
 db.cliente = require("./clientes")(sequelize, Sequelize);
+db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
+db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
+db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize); 
+db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
 
 

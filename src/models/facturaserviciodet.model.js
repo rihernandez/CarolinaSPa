@@ -1,43 +1,37 @@
 module.exports = (sequelize, Sequelize) => {
-    const Inventario = sequelize.define('inventario', {
-        id: {
+    const FacturaServicioDet = sequelize.define('facturaserviciodet', {
+        id_facturaserviciodet: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
         },
-        id_proveedor: {
+        id_facturaservicio: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
-        id_producto: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        cantidad:{
-            type: Sequelize.INTEGER(50),
+        cantidadservicio:{
+            type: Sequelize.INTEGER(40),
             allowNull: false
         },
         fechaVencimiento: {
             type: Sequelize.DATE
         },
         cantidadMinima: {
-            type: Sequelize.INTEGER(50),
+            type: Sequelize.INTEGER(40),
             allowNull: false
         },
         fechaEntrada: {
             type: Sequelize.DATE,
-            defaultValue: Sequelize.fn('NOW')
+            defaultValue: Sequelize.NOW
         }
     },
     {
         timestamps: false
     });
     
-    Inventario.associate = (models) => {
-        Inventario.hasMany(models.Proveedor);
-        Inventario.hasMany(models.Produtos);
-        Inventario.belongsTo(models.Produtos);
+    FacturaServicioDet.associate = (models) => {
+    FacturaServicioDet.belongsTo(models.FacturaServicio);
     };
 
 
