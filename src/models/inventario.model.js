@@ -35,11 +35,17 @@ module.exports = (sequelize, Sequelize) => {
     });
     
     Inventario.associate = (models) => {
+
         Inventario.belongsToMany(models.Produtos, {
             through: 'Inventario_Producto',
             as: 'inventarioProducto',
             foreignKey: 'id_inventario'
         });
+
+        Inventario.hasMany(models.Proveedor);
+        Inventario.hasMany(models.Produtos);
+        Inventario.belongsTo(models.Produtos);
+
     };
 
     return Inventario;
