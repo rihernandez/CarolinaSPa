@@ -19,6 +19,13 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     Categorias.associate = (models) => {
-        Categorias.belongsTo(models.Productos);
+        Categorias.belongsToMany(models.Productos, {
+            through: 'Categoria_Producto',
+            as: 'categoriaProducto',
+            foreignKey: 'id_categoria'
+        });
     };
+
+    return Categorias;
+
 }

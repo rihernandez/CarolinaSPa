@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Proveedor = sequelize.define('proveedor', {
+    const Proveedor = sequelize.define('proveedores', {
         id:{
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -15,8 +15,16 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     Proveedor.associate = (models) => {
-        Proveedor.belongsTo(models.Inventario);
-        Proveedor.belongsTo(models.Productos)
+        Proveedor.belongsToMany(models.Inventario,{
+            through: 'Proveedor_Inventario',
+            as: 'proveedoresInventario',
+            foreignKey: 'id_proveedor'
+        });
+        Proveedor.belongsToMany(models.Productos, {
+            through: 'Proveedor_Productos',
+            as: 'proveedoresProductos',
+            foreignKey: 'id_proveedor'
+        });
     };
 
     return Proveedor;
