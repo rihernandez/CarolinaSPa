@@ -37,6 +37,10 @@ require("./routes/proveedor.route")(app);
 require("./routes/catgorias.route")(app);
 require("./routes/inventario.route")(app);
 require("./routes/producto.route")(app);
+require("./routes/facturaservicio.route")(app);
+require("./routes/servicios.route")(app);
+require("./routes/facturaserviciodet.route")(app);
+require("./routes/perfiles.route")(app);
 
 
 

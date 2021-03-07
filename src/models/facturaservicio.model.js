@@ -43,4 +43,6 @@ module.exports = (sequelize, Sequelize) => {
       FacturaServicio.hasOne(models.EstadoFactura);
       FacturaServicio.hasOne(models.FacturaServicioDet);
   };
+
+  return FacturaServicio;
 };
