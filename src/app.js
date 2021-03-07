@@ -5,15 +5,16 @@ const db = require("./models");
 const cors = require('cors');
 
 
+
 const port = 8990;
 
 // connect to database
-//db.sequelize.sync();
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync();
+
+/*db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
   });
-
-
+*/
 // configure middleware
 
 var corsOptions = {
@@ -29,8 +30,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+
 // routes for the app
 require("./routes/test.route")(app);
+require("./routes/proveedor.route")(app);
+require("./routes/catgorias.route")(app);
+require("./routes/inventario.route")(app);
+require("./routes/producto.route")(app);
+
 
 
 // set the app to listen on the port
