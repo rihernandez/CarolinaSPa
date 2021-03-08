@@ -63,27 +63,25 @@ db.servicios.belongsToMany(db.citas, { as: 'fk_citas', through: 'servicios_citas
 db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_citas', foreignKey: 'id_citas', otherKey: 'id_servicio'});*/
 
 //Here an example how to add relationship between test1 to test2 (one to many) //where Multiples test2 can have same test1 id
-<<<<<<< HEAD
 // db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
 // db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
 
-=======
 
-db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
-db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
-db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
-db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
+// db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+// db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+// db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+// db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+// db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
+// db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
+// db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
+// db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
 //db.inventario.hasMany(db.productos, {foreignKey: 'id_inventario', sourceKey: 'id_Inventario'});
 //db.productos.belongsTo(db.inventario, {foreignKey: 'id_inventario', targetKey: 'id_Inventario'});
 
 
 db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
 db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
->>>>>>> 081d701155a3a7d0cbb583f3808cecdf994eefd1
+
 /*
 
 //Here an example how to implement relationship between tes1 to test2 (one to one) // whee Test2 can have just one and unique test1
