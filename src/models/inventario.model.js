@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Inventario = sequelize.define('inventario', {
-        id: {
+        id_Inventario: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -36,16 +36,7 @@ module.exports = (sequelize, Sequelize) => {
     
     Inventario.associate = (models) => {
 
-        Inventario.belongsToMany(models.Produtos, {
-            through: 'Inventario_Producto',
-            as: 'inventarioProducto',
-            foreignKey: 'id_inventario'
-        });
-
-        Inventario.hasMany(models.Proveedor);
         Inventario.hasMany(models.Produtos);
-        Inventario.belongsTo(models.Produtos);
-
     };
 
     return Inventario;
