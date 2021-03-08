@@ -11,10 +11,10 @@ const port = 8990;
 // connect to database
 db.sequelize.sync();
 
-/*db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
   });
-*/
+
 // configure middleware
 
 var corsOptions = {
@@ -37,6 +37,10 @@ require("./routes/proveedor.route")(app);
 require("./routes/catgorias.route")(app);
 require("./routes/inventario.route")(app);
 require("./routes/producto.route")(app);
+require("./routes/facturaservicio.route")(app);
+require("./routes/servicios.route")(app);
+require("./routes/facturaserviciodet.route")(app);
+require("./routes/perfiles.route")(app);
 
 
 

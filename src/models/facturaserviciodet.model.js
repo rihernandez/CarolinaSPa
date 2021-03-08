@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false
         },
-        cantidadservicio:{
+        cantidadServicio:{
             type: Sequelize.INTEGER(40),
             allowNull: false
         },
@@ -34,5 +34,5 @@ module.exports = (sequelize, Sequelize) => {
     FacturaServicioDet.belongsTo(models.FacturaServicio);
     };
 
-
+    return FacturaServicioDet;
 }

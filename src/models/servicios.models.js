@@ -30,4 +30,6 @@ module.exports = (sequelize, Sequelize) => {
       Servicios.hasMany(models.Citas);
       Servicios.hasOne(models.Citas);
   };
+
+  return Servicios;
 };
