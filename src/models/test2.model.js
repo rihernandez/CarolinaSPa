@@ -1,5 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Test2 = sequelize.define("test2", {
+      // uuid: {
+      //   type: Sequelize.INTEGER,
+      //   primaryKey: true,
+      //   auto_increment: true
+      //   },
       title: {
         type: Sequelize.STRING
       },
@@ -13,6 +18,6 @@ module.exports = (sequelize, Sequelize) => {
     {
       timestamps: false
     });
-  
+
     return Test2;
   };

@@ -38,8 +38,8 @@ db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize);
 db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
 //Here an example how to add relationship between test1 to test2 (one to many) //where Multiples test2 can have same test1 id
-db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
-db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
+// db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
+// db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
 
 /*
 
@@ -55,4 +55,5 @@ Guys if you need futher info about this topic here : https://grokonez.com/node-j
 Richard HC
 
 */
+
 module.exports = db;
