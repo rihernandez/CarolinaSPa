@@ -15,9 +15,6 @@ module.exports = app => {
   //Update a cita with id
   router.put('/:id', clientes.update);
 
-  // Retrieve all published tests
-  router.get("/published", clientes.findAllPublished);
-
   //Delete a Cita by id
   router.delete("/:id", clientes.delete);
 

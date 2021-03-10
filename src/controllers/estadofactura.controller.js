@@ -56,12 +56,3 @@ exports.deleteAll = (req, res) => {
           res.status(412).json({error: err.message});
       });
 };
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-  EstadoFactura.findAll({ where: { published: true } })
-        .then(result => res.json(result))
-        .catch(err => {
-            res.status(412).json({error: err.message});
-        });
-};
