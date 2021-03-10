@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
         ID_EstadoCita: {
             type: Sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            allowNull: false
         },
 
         Descripcion: {
