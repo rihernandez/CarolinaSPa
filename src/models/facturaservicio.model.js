@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         references: {
           type: Sequelize.INT,
-          model: 'EstadoFactura',
+          model: 'EstadoFacturas',
           key: 'ID_EstadoFactura'
         },
         allowNull: false
@@ -50,5 +50,14 @@ module.exports = (sequelize, Sequelize) => {
   {
       timestamps: false
   });
+
+  FacturaServicio.associate = (models) => {
+      FacturaServicio.hasMany(models.Servicios);
+      FacturaServicio.hasOne(models.Clientes);
+      FacturaServicio.hasOne(models.Usuarios);
+      FacturaServicio.hasOne(models.EstadoFactura);
+      FacturaServicio.hasOne(models.FacturaServicioDet);
+  };
+
   return FacturaServicio;
 };

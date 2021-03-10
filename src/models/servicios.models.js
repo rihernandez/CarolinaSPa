@@ -23,5 +23,13 @@ module.exports = (sequelize, Sequelize) => {
   {
       timestamps: false
   });
+
+  Servicios.associate = (models) => {
+      Servicios.hasMany(models.FacturaServicio);
+      Servicios.hasOne(models.FacturaServicio);
+      Servicios.hasMany(models.Citas);
+      Servicios.hasOne(models.Citas);
+  };
+
   return Servicios;
 };

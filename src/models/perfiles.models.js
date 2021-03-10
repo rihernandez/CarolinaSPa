@@ -28,5 +28,11 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps: false
     });
+
+    Perfiles.associate = (models) => {
+        Perfiles.hasOne(models.Clientes);
+        Perfiles.hasOne(models.Usuarios);
+    };
+
     return Perfiles;
 };
