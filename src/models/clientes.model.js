@@ -3,7 +3,8 @@ module.exports = (sequelize, Sequelize) => {
     ID_Cliente : {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        auto_increment: true
+        autoIncrement: true,
+        allowNull: false
     },
 
     Nombre: {

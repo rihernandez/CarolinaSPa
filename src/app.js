@@ -41,7 +41,10 @@ require("./routes/facturaservicio.route")(app);
 require("./routes/servicios.route")(app);
 require("./routes/facturaserviciodet.route")(app);
 require("./routes/perfiles.route")(app);
-
+require("./routes/citas.route")(app);
+require("./routes/estadocita.route")(app);
+require("./routes/clientes.route")(app);
+require("./routes/estadofactura.route")(app);
 
 
 // set the app to listen on the port
