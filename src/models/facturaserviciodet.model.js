@@ -8,6 +8,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_facturaservicio: {
             type: Sequelize.INTEGER,
+            references: {
+                type: Sequelize.INT,
+                model: 'facturaservicio',
+                key: 'id_:facturaservicio'
+            },
             allowNull: false
         },
         cantidadServicio:{
@@ -29,10 +34,5 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps: false
     });
-    
-    FacturaServicioDet.associate = (models) => {
-    FacturaServicioDet.belongsTo(models.FacturaServicio);
-    };
-
     return FacturaServicioDet;
 }

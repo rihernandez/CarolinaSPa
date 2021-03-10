@@ -13,6 +13,11 @@ module.exports = (sequelize, Sequelize) => {
     },
     id_cliente: {
         type: Sequelize.INTEGER,
+        references: {
+            type: Sequelize.INT,
+            model: 'Clientes',
+            key: 'ID_Cliente'
+        },
         allowNull: false
     },
     tipoPerfil: {
@@ -23,11 +28,5 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps: false
     });
-
-    Perfiles.associate = (models) => {
-        Perfiles.hasOne(models.Clientes);
-        Perfiles.hasOne(models.Usuarios);
-    };
-
     return Perfiles;
 };
