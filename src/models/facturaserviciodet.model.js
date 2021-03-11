@@ -8,6 +8,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_facturaservicio: {
             type: Sequelize.INTEGER,
+            references: {
+                type: Sequelize.INT,
+                model: 'facturaservicios',
+                key: 'id_facturaservicio'
+            },
             allowNull: false
         },
         cantidadServicio:{

@@ -1,5 +1,4 @@
 module.exports = (sequelize, Sequelize) => {
-    
     const EstadoFactura = sequelize.define('EstadoFactura',
     {
         ID_EstadoFactura: {
@@ -18,4 +17,4 @@ module.exports = (sequelize, Sequelize) => {
     });
 
 return EstadoFactura;
-}
+};

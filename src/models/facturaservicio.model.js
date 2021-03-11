@@ -9,6 +9,11 @@ module.exports = (sequelize, Sequelize) => {
       },
       id_servicio: {
           type: Sequelize.INTEGER,
+          references: {
+            type: Sequelize.INT,
+            model:'servicios',
+            key: 'id_servicio'
+          },
           allowNull: false
       },
       id_usuario: {
@@ -17,10 +22,20 @@ module.exports = (sequelize, Sequelize) => {
       },
       id_cliente: {
           type: Sequelize.INTEGER,
+          references: {
+            type: Sequelize.INT,
+            model: 'Clientes',
+            key: 'ID_Cliente'
+          },
           allowNull: false
       },
       id_estadofactura: {
         type: Sequelize.INTEGER,
+        references: {
+          type: Sequelize.INT,
+          model: 'EstadoFacturas',
+          key: 'ID_EstadoFactura'
+        },
         allowNull: false
       },
       fechafactura: {

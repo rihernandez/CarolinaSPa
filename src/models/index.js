@@ -45,15 +45,6 @@ Richard HC
 // db.cliente.hasMany(db.perfiles, {foreignKey: 'id_cliente', sourceKey: 'ID_Cliente'});
 
 
-// db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
-// db.productos = require("./producto.model.js")(sequelize, Sequelize);
-// db.proveedor = require("./proveedores.model.js")(sequelize, Sequelize);
-// db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
-// db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
-// db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
-// db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize); 
-// db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
-
 // //factura servicio foraignKeys
 // db.facturaservicio.belongsToMany(db.servicios, { as: 'fk_facturaservicio', through: 'servicio_factura_servicio', foreignKey: 'id_facturaservicio', otherKey: 'id_servicio'});
 // db.servicios.belongsToMany(db.facturaservicio, { as: 'fk_servicio', through: 'servicio_factura_servicio', foreignKey: 'id_servicio', otherKey: 'id_facturaservicio'});
@@ -97,19 +88,22 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 /************************************************************************************************ */
 //Jefrey
 
-
-
-
+db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
+db.productos = require("./producto.model.js")(sequelize, Sequelize);
+db.proveedor = require("./proveedores.model.js")(sequelize, Sequelize);
+db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Adrian
 
-
-
-
+db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
+db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
+db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize); 
+db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Michael
+
 db.citas = require("./citas.model")(sequelize, Sequelize);
 db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.cliente = require("./clientes.model")(sequelize, Sequelize);
@@ -117,9 +111,6 @@ db.estadofactura = require("./estadofactura.model")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Daviel
-
-
-
 
 
 
