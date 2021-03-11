@@ -110,8 +110,8 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 
 /************************************************************************************************ */
 //Michael
-db.citas = require("./citas.model")(sequelize, Sequelize);
-db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
+// db.citas = require("./citas.model")(sequelize, Sequelize);
+// db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.cliente = require("./clientes.model")(sequelize, Sequelize);
 db.estadofactura = require("./estadofactura.model")(sequelize, Sequelize);
 
