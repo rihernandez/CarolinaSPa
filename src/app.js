@@ -9,6 +9,7 @@ const cors = require('cors');
 const port = 8990;
 
 // connect to database
+
 // db.sequelize.sync();
 
 db.sequelize.sync({ force: true }).then(() => {

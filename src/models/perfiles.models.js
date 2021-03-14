@@ -13,6 +13,11 @@ module.exports = (sequelize, Sequelize) => {
     },
     id_cliente: {
         type: Sequelize.INTEGER,
+        references: {
+            type: Sequelize.INT,
+            model: 'Clientes',
+            key: 'ID_Cliente'
+        },
         allowNull: false
     },
     tipoPerfil: {
