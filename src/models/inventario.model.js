@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Inventario = sequelize.define('inventario', {
+    const Inventario = sequelize.define('Inventario', {
         id_Inventario: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -8,11 +8,21 @@ module.exports = (sequelize, Sequelize) => {
         },
         id_proveedor: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references:{
+                type: Sequelize.INT,
+                model: 'Proveedor', 
+                key: 'id_Proveedor'
+            }
         },
         id_producto: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references:{
+                type: Sequelize.INT,
+                model: 'Productos',
+                key: 'id_Producto'
+            }
         },
         cantidad:{
             type: Sequelize.INTEGER(50),
@@ -33,12 +43,6 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps: false
     });
-    
-    Inventario.associate = (models) => {
-
-        Inventario.hasMany(models.Produtos);
-    };
 
     return Inventario;
-
 }

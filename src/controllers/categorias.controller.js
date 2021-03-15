@@ -2,65 +2,56 @@ const db = require("../models");
 const Categoria = db.categorias;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Create and save a new Categoria
 exports.create = (req, res) => {
     Categoria.create(req.body)
         .then(result => res.json(result))
         .catch(err => {
-            res.status(412).json({ msg: err.message });
+            res.status(412).json({error: err.message});
         });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all categorias from the database.
 exports.findAll = (req, res) => {
     Categoria.findAll({})
         .then(result => res.json(result))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
-// Find a single Tutorial with an id
+// Find a single categoria with an id
 exports.findOne = (req, res) => {
-    Categoria.findOne({ where: req.params })
+    Categoria.findOne({ where: {id_Categoria: req.params.id}})
         .then(result => res.json(result))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
-// Update a Tutorial by the id in the request
+// Update a categoria by the id in the request
 exports.update = (req, res) => {
-    Categoria.update(req.body, { where: req.params })
+    Categoria.update(req.body, { where: {id_Categoria: req.params.id} })
         .then(result => res.sendStatus(204))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
-// Delete a Tutorial with the specified id in the request
+// Delete a categoria with the specified id in the request
 exports.delete = (req, res) => {
-    Categoria.destroy({ where: req.params })
+    Categoria.destroy({ where: {id_Categoria: req.params.id}})
         .then(result => res.sendStatus(204))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
-// Delete all Tutorials from the database.
+// Delete all categorias from the database.
 exports.deleteAll = (req, res) => {
     Categoria.destroy({ where: {}, truncate: false })
         .then(result => res.sendStatus(204))
         .catch(err => {
-            res.status(412).json({ msj: err.message });
-        });
-};
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-    Categoria.findAll({ where: { published: true } })
-        .then(result => res.json(result))
-        .catch(err => {
-            res.status(412).json({ msj: err.message });
+            res.status(412).json({error: err.message});
         });
 };

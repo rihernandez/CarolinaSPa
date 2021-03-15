@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 // routes for the app
 require("./routes/test.route")(app);
 require("./routes/proveedor.route")(app);
-require("./routes/catgorias.route")(app);
+require("./routes/categorias.route")(app);
 require("./routes/inventario.route")(app);
 require("./routes/producto.route")(app);
 require("./routes/facturaservicio.route")(app);

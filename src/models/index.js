@@ -86,14 +86,6 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 //db.productos.belongsTo(db.inventario, {foreignKey: 'id_inventario', targetKey: 'id_Inventario'});
 
 /************************************************************************************************ */
-//Jefrey
-
-db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
-db.productos = require("./producto.model.js")(sequelize, Sequelize);
-db.proveedor = require("./proveedores.model.js")(sequelize, Sequelize);
-db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
-
-/************************************************************************************************ */
 //Adrian
 
 db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
@@ -105,9 +97,15 @@ db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 //Michael
 
 db.citas = require("./citas.model")(sequelize, Sequelize);
+
 db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.cliente = require("./clientes.model")(sequelize, Sequelize);
 db.estadofactura = require("./estadofactura.model")(sequelize, Sequelize);
+
+db.productos = require("./producto.model.js")(sequelize, Sequelize);
+db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
+db.proveedor = require("./proveedor.model.js")(sequelize, Sequelize);
+db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Daviel

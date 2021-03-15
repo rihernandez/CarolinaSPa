@@ -1,5 +1,5 @@
 module.exports = app => {
-    const producto = require("../controllers/productos.controller");
+    const producto = require("../controllers/productos.controller.js");
   
     var router = require("express").Router();
 
@@ -8,9 +8,6 @@ module.exports = app => {
   
     // Retrieve all tests
     router.get("/", producto.findAll);
-  
-    // Retrieve all published tests
-    router.get("/published", producto.findAllPublished);
   
     // Retrieve a single Test with id
     router.get("/:id", producto.findOne);

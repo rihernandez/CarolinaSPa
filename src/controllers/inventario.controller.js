@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     Inventario.create(req.body)
         .then(result => res.json(result))
         .catch(err => {
-            res.status(412).json({ msg: err.message });
+            res.status(412).json({error: err.message});
         });
 };
 
@@ -16,34 +16,34 @@ exports.findAll = (req, res) => {
     Inventario.findAll({})
         .then(result => res.json(result))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
-    Inentario.findOne({ where: req.params })
+    Inentario.findOne({where: {id_Inventario: req.params.id}})
         .then(result => res.json(result))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
 // Update a Tutorial by the id in the request
 exports.update = (req, res) => {
-    Inventario.update(req.body, { where: req.params })
+    Inventario.update(req.body, {where: {id_Inventario: req.params.id}})
         .then(result => res.sendStatus(204))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-    Inventario.destroy({ where: req.params })
+    Inventario.destroy({where: {id_Inventario: req.params.id}})
         .then(result => res.sendStatus(204))
         .catch(error => {
-            res.status(412).json({ msj: error.message });
+            res.status(412).json({error: err.message});
         });
 };
 
@@ -52,15 +52,6 @@ exports.deleteAll = (req, res) => {
     Inventario.destroy({ where: {}, truncate: false })
         .then(result => res.sendStatus(204))
         .catch(err => {
-            res.status(412).json({ msj: err.message });
-        });
-};
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-    Inventario.findAll({ where: { published: true } })
-        .then(result => res.json(result))
-        .catch(err => {
-            res.status(412).json({ msj: err.message });
+            res.status(412).json({error: err.message});
         });
 };

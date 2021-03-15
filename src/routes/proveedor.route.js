@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all tests
     router.get("/", proveedor.findAll);
   
-    // Retrieve all published tests
-    router.get("/published", proveedor.findAllPublished);
-  
     // Retrieve a single Test with id
     router.get("/:id", proveedor.findOne);
   

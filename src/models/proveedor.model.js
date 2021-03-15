@@ -1,23 +1,21 @@
 module.exports = (sequelize, Sequelize) => {
-    const Proveedor = sequelize.define('proveedores', {
+    const Proveedor = sequelize.define('Proveedor', {
+
         id_Proveedor:{
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
         },
+
         proveedor:{
             type: Sequelize.STRING,
         }
     },
     {
-        timestamps: false
+        timestamps: false,
+        freezeTableName: true                   //Avoid adding s to end of model;
     });
-
-    Proveedor.associate = (models) => {
-        Proveedor.hasMany(models.Inventario);
-        Proveedor.hasMany(models.Productos);
-    };
 
     return Proveedor;
 }

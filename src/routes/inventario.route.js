@@ -8,10 +8,7 @@ module.exports = app => {
   
     // Retrieve all tests
     router.get("/", inventario.findAll);
-  
-    // Retrieve all published tests
-    router.get("/published", inventario.findAllPublished);
-  
+
     // Retrieve a single Test with id
     router.get("/:id", inventario.findOne);
   
