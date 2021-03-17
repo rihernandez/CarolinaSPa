@@ -38,6 +38,12 @@ module.exports = (sequelize, Sequelize) => {
         timestamps: false
     });
 
+Citas.associate = (models) => {
+    Citas.hasMany(models.Servicios);
+    Citas.hasOne(models.EstadoCita);
+    Citas.hasMany(models.Clientes);
+};
+
     return Citas;
 }
 
