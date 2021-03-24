@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 
-const port = 8990;
+const port = 5000;
 
 // connect to database
 
