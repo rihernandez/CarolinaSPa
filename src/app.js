@@ -24,7 +24,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.set('port', process.env.port || port); 
+app.set('port', process.env.PORT || port); 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
