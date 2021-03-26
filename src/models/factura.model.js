@@ -8,10 +8,10 @@ module.exports = (sequelize, Sequelize) => {
         },
 
         ID_Producto: {
-            type: Sequelize.INTEGER(100),
+            type: Sequelize.INTEGER,
             references: {
                 type: Sequelize.INT,
-                model: 'productos',
+                model: 'Productos',
                 key: 'id_Producto'
             }
         },
@@ -29,7 +29,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             references: {
                 type: Sequelize.INT,
-                model: 'Usuario',
+                model: 'Usuarios',
                 key: 'ID_Usuario'
             }
         },
@@ -46,7 +46,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             references: {
                 type: Sequelize.INT,
-                model: 'EstadoFactura',
+                model: 'EstadoFacturas',
                 key: 'ID_EstadoFactura'
             }
 

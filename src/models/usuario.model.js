@@ -11,10 +11,16 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER(100),
             references: {
                 type: Sequelize.INT,
-                model: 'Rol',
-                key: 'ID_Rol'
+                model: 'Rols',
+                key: 'ID_Rol',
+                allowNull: true,
+
             }
         },
+        Email: {
+            type: Sequelize.STRING(100),
+        },
+
         Nombre: {
             type: Sequelize.STRING(100),
         },
@@ -22,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(100),
         },
         Cedula: {
-            type: Sequelize.STRING(100),
+            type: Sequelize.STRING(13),
         },
         Contrasena: {
             type: Sequelize.STRING(100),

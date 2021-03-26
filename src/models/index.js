@@ -2,15 +2,15 @@ const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+    pool: {
+        max: dbConfig.pool.max,
+        min: dbConfig.pool.min,
+        acquire: dbConfig.pool.acquire,
+        idle: dbConfig.pool.idle
+    }
 });
 
 const db = {};
@@ -90,7 +90,7 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 
 db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
 db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
-db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize); 
+db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize);
 db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
@@ -111,7 +111,10 @@ db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Daviel
-
+db.rol = require("./rol.model")(sequelize, Sequelize);
+db.usuario = require("./usuario.model.js")(sequelize, Sequelize);
+db.factura = require("./factura.model")(sequelize, Sequelize);
+db.facturaDetalle = require("./facturaDetalle.model")(sequelize, Sequelize);
 
 
 

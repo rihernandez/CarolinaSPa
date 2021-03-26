@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER(100),
             references: {
                 type: Sequelize.INT,
-                model: 'Factura',
+                model: 'Facturas',
                 key: 'ID_Factura'
             }
         },
