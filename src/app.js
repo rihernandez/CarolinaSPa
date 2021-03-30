@@ -10,19 +10,21 @@ require('dotenv').config()
 
 // connect to database
 
-//  db.sequelize.sync();
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync();
+
+
+/*db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
-  });
+  });*/
 
 // configure middleware
 
-var corsOptions = {
+/*var corsOptions = {
   origin: "http://localhost:8081"
-};
+};*/
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.set('port', process.env.PORT); 
 

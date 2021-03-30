@@ -74,12 +74,12 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 // db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
 
 
-// db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-// db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-// db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-// db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-// db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
-// db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
+//db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+//db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+//db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+//db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+//db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
+//db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
 // db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
 // db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
 //db.inventario.hasMany(db.productos, {foreignKey: 'id_inventario', sourceKey: 'id_Inventario'});
@@ -112,6 +112,14 @@ db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 /************************************************************************************************ */
 //Daviel
 
+db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
+db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
+db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
+db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
+db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
 
 
 
