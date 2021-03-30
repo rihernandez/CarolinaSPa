@@ -3,7 +3,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require("./models");
 const cors = require('cors');
+
 require('dotenv').config()
+
+const unless = require('express-unless');
+
+const auth = require("./controllers/auth.controller");
+
 
 
 // const port = 5000;
@@ -26,14 +32,17 @@ db.sequelize.sync();
 
 app.use(cors());
 
+
 app.set('port', process.env.PORT); 
 
-console.log("TEST ", app.get('port'))
+app.set('port', process.env.port || port);
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
+app.use(auth.verifyToken)
 
 
 // routes for the app
@@ -50,9 +59,17 @@ require("./routes/citas.route")(app);
 require("./routes/estadocita.route")(app);
 require("./routes/clientes.route")(app);
 require("./routes/estadofactura.route")(app);
+require("./routes/factura.route")(app);
+require("./routes/facturaDetalle.route")(app);
+require("./routes/rol.route")(app);
+require("./routes/usuario.route")(app);
+require("./routes/auth.route")(app);
+
+
 
 
 // set the app to listen on the port
-app.listen( app.get('port'), () => {
-    console.log("Server running on port:" +  app.get('port'));
+app.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
 });
+

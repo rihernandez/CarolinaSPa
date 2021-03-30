@@ -2,15 +2,15 @@ const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+    pool: {
+        max: dbConfig.pool.max,
+        min: dbConfig.pool.min,
+        acquire: dbConfig.pool.acquire,
+        idle: dbConfig.pool.idle
+    }
 });
 
 const db = {};
@@ -90,7 +90,7 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 
 db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
 db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
-db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize); 
+db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize);
 db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
@@ -111,6 +111,7 @@ db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
 /************************************************************************************************ */
 //Daviel
+<<<<<<< HEAD
 
 db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
 db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
@@ -120,6 +121,12 @@ db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_P
 db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
 db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
 db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+=======
+db.rol = require("./rol.model")(sequelize, Sequelize);
+db.usuario = require("./usuario.model.js")(sequelize, Sequelize);
+db.factura = require("./factura.model")(sequelize, Sequelize);
+db.facturaDetalle = require("./facturaDetalle.model")(sequelize, Sequelize);
+>>>>>>> adcc16a2d52791d9d81ebf667ded398a9958fc24
 
 
 
