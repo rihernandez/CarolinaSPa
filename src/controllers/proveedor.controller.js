@@ -22,7 +22,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
-    Proveedor.findOne({ where: {id_Proveedor: req.params}})
+    Proveedor.findOne({ where: {id_Proveedor: req.params.id}})
         .then(result => res.json(result))
         .catch(error => {
             res.status(412).json({error: err.message});
