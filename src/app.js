@@ -10,11 +10,11 @@ require('dotenv').config()
 
 // connect to database
 
- db.sequelize.sync();
+//  db.sequelize.sync();
 
-// db.sequelize.sync({ force: true }).then(() => {
-//     console.log("Drop and re-sync db.");
-//   });
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
 
 // configure middleware
 
