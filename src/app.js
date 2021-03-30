@@ -11,6 +11,7 @@ require('dotenv').config()
 
 
 
+<<<<<<< HEAD
 // db.sequelize.sync({ force: false }).then(() => {
 //     console.log("Drop and re-sync db.");
 // });
@@ -35,6 +36,20 @@ db.sequelize.sync();
 };*/
 
 app.use(cors());
+=======
+ db.sequelize.sync();
+
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log("Drop and re-sync db.");
+//   });
+
+// configure middleware
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+  credentials:true,   
+};
+>>>>>>> 0e22d6b (Finished components: Citas, Clientes, EstadoCita, EstadoFactura)
 
 app.set('port', process.env.PORT || 8990);
 

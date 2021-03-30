@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   Citas.create(req.body)
        .then(result => res.json(result))
        .catch(err =>{
-         res.status(412).json({error: err.message})
+         res.status(412).json({err})
        });
 };
 
