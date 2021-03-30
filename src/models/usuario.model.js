@@ -1,56 +1,61 @@
 module.exports = (sequelize, Sequelize) => {
-    const Usuario = sequelize.define('Usuario', {
-        ID_Usuario: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull: false
-        },
+    const Usuario = sequelize.define(
+        "Usuario", {
+            ID_Usuario: {
+                type: Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
+                allowNull: false,
+            },
 
-        ID_Rol: {
-            type: Sequelize.INTEGER(100),
-            references: {
-                type: Sequelize.INT,
-                model: 'Rols',
-                key: 'ID_Rol',
-                allowNull: true,
+            ID_Rol: {
+                type: Sequelize.INTEGER,
+                references: {
+                    type: Sequelize.INT,
+                    model: "Rols",
+                    key: "ID_Rol",
+                    allowNull: true,
+                },
+            },
+            Email: {
+                type: Sequelize.STRING(100),
+            },
 
-            }
-        },
-        Email: {
-            type: Sequelize.STRING(100),
-        },
-
-        Nombre: {
-            type: Sequelize.STRING(100),
-        },
-        Apellidos: {
-            type: Sequelize.STRING(100),
-        },
-        Cedula: {
-            type: Sequelize.STRING(13),
-        },
-        Contrasena: {
-            type: Sequelize.STRING(100),
-        },
-        FechaNacimiento: {
-            type: Sequelize.DATEONLY,
-        },
-        FechaIngreso: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.fn('NOW')
-        },
-        UltimoIngreso: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.fn('NOW')
-        },
-        Estado: {
-            type: Sequelize.CHAR,
-            defaultValue: 1
+            Nombre: {
+                type: Sequelize.STRING(100),
+            },
+            Apellidos: {
+                type: Sequelize.STRING(100),
+            },
+            Cedula: {
+                type: Sequelize.STRING(13),
+            },
+            Contrasena: {
+                type: Sequelize.STRING(100),
+            },
+            FechaNacimiento: {
+                type: Sequelize.DATEONLY,
+            },
+            FechaIngreso: {
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.fn("NOW"),
+            },
+            UltimoIngreso: {
+                type: Sequelize.DATE,
+                defaultValue: Sequelize.fn("NOW"),
+            },
+            Estado: {
+                type: Sequelize.CHAR,
+                defaultValue: 1,
+            },
+        }, {
+            timestamps: false,
+        }, {
+            defaultScope: {
+                attributes: { exclude: ["Contrasena"] },
+            },
         }
-    }, {
-        timestamps: false
-    });
+    );
 
     return Usuario;
-}
+};

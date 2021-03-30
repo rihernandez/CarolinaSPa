@@ -1,5 +1,5 @@
 {
-    "ID_Servicio": null,
-    "ID_EstadoCita": null,
-    "ID_Cliente": null
+    "ID_Servicio": 1,
+    "ID_EstadoCita": 1,
+    "ID_Cliente": 1
 }

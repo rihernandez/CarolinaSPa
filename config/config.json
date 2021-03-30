@@ -1,0 +1,10 @@
+{
+    "development": {
+        "username": "root",
+        "password": "toor",
+        "database": "carolina_spa_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "operatorsAliases": false
+    }
+}
