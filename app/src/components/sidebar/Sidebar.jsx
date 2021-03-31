@@ -1,6 +1,32 @@
 import React from "react";
 import "./Sidebar.css";
 import { isAdmin, getUser } from "../../utils/auth";
+import { Link } from "react-router-dom";
+
+const links = [
+  { icon: "fas fa-file-alt", path: "/factura", title: "Factura" },
+  { icon: "fas fa-calendar-week", path: "/citas", title: "Citas" },
+];
+
+const linksAdmin = [
+  { icon: "fas fa-boxes", path: "/productos", title: "Productos" },
+  { icon: "fa fa-user-tie", path: "/proveedores", title: "Proveedores" },
+  { icon: "fas fa-dolly-flatbed", path: "/inventarios", title: "Inventarios" },
+  { icon: "fas fa-list-ul", path: "/categorias", title: "Categorias" },
+  { icon: "fas fa-users", path: "/usuario", title: "Usuarios" },
+  { icon: "fas fa-user-tag", path: "/rol", title: "Roles" },
+  { icon: "fas fa-chalkboard-teacher", path: "/clientes", title: "Clientes" },
+  {
+    icon: "fas fa-file-invoice",
+    path: "/estadofactura",
+    title: "Estado de facturas",
+  },
+  {
+    icon: "far fa-calendar-check",
+    path: "/estadofactura",
+    title: "Estado de citas",
+  },
+];
 
 const Sidebar = () => {
   const user = getUser();
@@ -18,46 +44,19 @@ const Sidebar = () => {
         <hr />
       </div>
 
-      <a href="#news">
-        <i className="fas fa-file-alt"></i> Facturas
-      </a>
-      <a href="#news">
-        <i className="fas fa-receipt"></i> Detalles de factura
-      </a>
-      <a href="#news">
-        <i className="fas fa-calendar-week"></i> Citas
-      </a>
+      {links.map((link, i) => (
+        <Link className={"navbar-brand"} to={link.path} key={i}>
+          <i className={link.icon}></i> {link.title}
+        </Link>
+      ))}
 
       {isAdmin() && (
         <>
-          {" "}
-          <a href="#news">
-            <i className="fa fa-user-tie"></i> Proveedores
-          </a>
-          <a href="#news">
-            <i className="fas fa-dolly-flatbed"></i> Inventarios
-          </a>
-          <a href="#news">
-            <i className="fas fa-boxes"></i> Productos
-          </a>
-          <a href="#news">
-            <i className="fas fa-list-ul"></i> Categorias
-          </a>
-          <a href="#news">
-            <i className="fas fa-users"></i> Usuarios
-          </a>
-          <a href="#news">
-            <i className="fas fa-user-tag"></i> Roles
-          </a>
-          <a href="#news">
-            <i className="fas fa-chalkboard-teacher"></i> Cliente
-          </a>
-          <a href="#news">
-            <i className="fas fa-file-invoice"></i> Estado de facturas
-          </a>
-          <a href="#news">
-            <i className="far fa-calendar-check"></i> Estado de citas
-          </a>
+          {linksAdmin.map((link, i) => (
+            <Link className={"navbar-brand"} to={link.path} key={i}>
+              <i className={link.icon}></i> {link.title}
+            </Link>
+          ))}
         </>
       )}
     </div>

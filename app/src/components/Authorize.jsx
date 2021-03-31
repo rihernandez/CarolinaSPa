@@ -6,7 +6,7 @@ function requireAuth(ComposedComponent) {
   const Authorize = (props) => {
     React.useEffect(() => {
       const token = sessionStorage.getItem(TOKEN_NAME);
-      if (!token) props.history.replace("signin");
+      if (!token) props.history.replace("/signin");
     }, [props.history]);
 
     return (

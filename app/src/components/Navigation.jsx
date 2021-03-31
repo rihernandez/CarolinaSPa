@@ -15,7 +15,7 @@ const Navigation = ({ history }) => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-dark "
+        className="navbar sticky-top navbar-expand-lg navbar-dark "
         style={{
           backgroundColor: "#161e2e",
           color: "white",

@@ -47,7 +47,7 @@ exports.login = async(req, res) => {
             rol: rol,
         },
         "123Secret", {
-            expiresIn: 60 * 60 * 24,
+            expiresIn: 60 * 60 * 48,
         }
     );
 

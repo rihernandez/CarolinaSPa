@@ -1,21 +1,26 @@
 import React from "react";
 
 const TextField = ({
-  icon,
+  icon = null,
   name,
   placeholder,
   type = null,
   value,
   onChange = () => {},
+  label = null,
   ...rest
 }) => {
   return (
-    <div className="form-group input-group">
-      <div className="input-group-prepend">
-        <span className="input-group-text">
-          <i className={icon}></i>
-        </span>
-      </div>
+    <div className={`form-group  ${!label ? "input-group" : ""}`}>
+      {label && <label>{label}</label>}
+      {icon && (
+        <div className="input-group-prepend">
+          <span className="input-group-text">
+            <i className={icon}></i>
+          </span>
+        </div>
+      )}
+
       <input
         required
         name={name}
