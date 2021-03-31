@@ -52,27 +52,6 @@ app.use(bodyParser.json());
 
 
 //app.use(auth.verifyToken);
-
-// routes for the app
-require('./routes/test.route')(app);
-require('./routes/proveedor.route')(app);
-require('./routes/categorias.route')(app);
-require('./routes/inventario.route')(app);
-require('./routes/producto.route')(app);
-require('./routes/facturaservicio.route')(app);
-require('./routes/servicios.route')(app);
-require('./routes/facturaserviciodet.route')(app);
-require('./routes/perfiles.route')(app);
-require('./routes/citas.route')(app);
-require('./routes/estadocita.route')(app);
-require('./routes/clientes.route')(app);
-require('./routes/estadofactura.route')(app);
-require('./routes/factura.route')(app);
-require('./routes/facturaDetalle.route')(app);
-require('./routes/rol.route')(app);
-require('./routes/usuario.route')(app);
-require('./routes/auth.route')(app);
-
 //app.use(auth.verifyToken)
 app.use(cors(corsOptions));
 
