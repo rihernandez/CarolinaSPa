@@ -8,35 +8,6 @@ const auth = require("./controllers/auth.controller");
 
 require('dotenv').config()
 
-
-
-
-<<<<<<< HEAD
-// db.sequelize.sync({ force: false }).then(() => {
-//     console.log("Drop and re-sync db.");
-// });
-
-// configure middleware
-
-// var corsOptions = {
-//     origin: "http://localhost:8081"
-// };
-
-db.sequelize.sync();
-
-
-/*db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-  });*/
-
-// configure middleware
-
-/*var corsOptions = {
-  origin: "http://localhost:8081"
-};*/
-
-app.use(cors());
-=======
  db.sequelize.sync();
 
 // db.sequelize.sync({ force: true }).then(() => {
@@ -49,7 +20,6 @@ var corsOptions = {
   origin: "http://localhost:3000",
   credentials:true,   
 };
->>>>>>> 0e22d6b (Finished components: Citas, Clientes, EstadoCita, EstadoFactura)
 
 app.set('port', process.env.PORT || 8990);
 
@@ -58,7 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-app.use(auth.verifyToken)
+//app.use(auth.verifyToken)
+app.use(cors(corsOptions));
 
 
 // routes for the app
@@ -80,7 +51,6 @@ require("./routes/facturaDetalle.route")(app);
 require("./routes/rol.route")(app);
 require("./routes/usuario.route")(app);
 require("./routes/auth.route")(app);
-
 
 app.listen(app.get('port'), () => {
     console.log(`Server running on port:`, app.get('port'));

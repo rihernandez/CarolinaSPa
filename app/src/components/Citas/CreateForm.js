@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form } from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 function CreateFormCita(props) {
     
@@ -28,33 +28,45 @@ function CreateFormCita(props) {
 
         props.createCita(newCita);
         window.location.href = '/citas';
-    }
-
-    const handleKeyDown = (event) => {
-        if(event.key !== 'Enter' || !cita) return;
-        event.preventDefault();
-
-        props.createCita(cita);
-        window.location.href = '/citas';
-    }
+    }   
 
     return(
     <div>
         <h1>Crear nuevo estado de factura</h1>
         <Form className="shadow p-3 mb-5 bg-white rounded" onSubmit={handleSubmit}>
-            <Form.Group controlId="formGridNombre">
+            <Form.Group controlId="formGridServicioId">
                 <Form.Label> Servicio </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_Servicio" value={cita.ID_Cliente} onKeyDown={handleKeyDown}/>
+                <Form.Control as="select" name="ID_Servicio" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.servicios.map((servicio, key) => (
+                            <option key={key} value={servicio.id_servicio}>{servicio.servicio}</option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-            <Form.Group controlId="formGridCedula">
+            <Form.Group controlId="formGridEstadoCitaId">
                  <Form.Label> Estado de Cita </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_EstadoCita" value={cita.ID_EstadoCita} onKeyDown={handleKeyDown}/>
+                 <Form.Control as="select" name="ID_EstadoCita" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.estadoCitas.map((estadoCita, key) => (
+                            <option key={key} value={estadoCita.ID_EstadoCita}>{estadoCita.Descripcion}</option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-            <Form.Group controlId="formGridFechaNacimiento">
+            <Form.Group controlId="formGridClienteId">
                 <Form.Label> Cliente </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_Cliente" value={cita.ID_Cliente} onKeyDown={handleKeyDown}/>
+                <Form.Control as="select" name="ID_Cliente" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.clientes.map((cliente, key) => (
+                            <option key={key} value={cliente.ID_Cliente}>{cliente.Cedula}</option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-                
             <Form.Row>
                 <Link to="/citas" className="btn btn-primary mr-3"> Atrás </Link>
                 <Link to="/citas" className="btn btn-primary" onClick={handleSubmit}> Crear </Link>

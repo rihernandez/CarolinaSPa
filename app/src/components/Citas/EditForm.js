@@ -17,43 +17,72 @@ function EditFormCitas(props) {
         setCita({ ...cita, [name]: value});
     }
     
-    const handleButtonClick = (e) => {
+    const handleSubmit = (e) => {
         if(!cita) return;
         e.preventDefault();
 
         props.updateCita(id, cita);
-        //window.location.href='/citas';
+        window.location.href='/citas';
     }
     
-    const handleKeyDown = (event) => {
-        if(event.key !== 'Enter' || !cita) return;
-        event.preventDefault();
-
-        props.updateCita(id, cita);
-        //window.location.href='/citas';
-    }
-    
-
     return(
     <div>
         <h1>Editar estado de factura</h1>
-            <Form.Group controlId="formGridNombre">
+        <button onClick={() => console.log(cita)}>s</button>
+        <Form className="shadow p-3 mb-5 bg-white rounded" onSubmit={handleSubmit}>
+            <Form.Group controlId="formGridServicioId">
                 <Form.Label> Servicio </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_Servicio" value={cita.ID_Servicio} onKeyDown={handleKeyDown}/>
+                <Form.Control as="select" name="ID_Servicio" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.servicios.map((servicio, key) => (
+                            <option
+                                selected={servicio.id_servicio === cita.ID_Servicio}  
+                                key={key} 
+                                value={servicio.id_servicio}>
+                                {servicio.servicio}
+                            </option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-            <Form.Group controlId="formGridCedula">
+            <Form.Group controlId="formGridEstadoCitaId">
                  <Form.Label> Estado de Cita </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_EstadoCita" value={cita.ID_EstadoCita} onKeyDown={handleKeyDown}/>
+                 <Form.Control as="select" name="ID_EstadoCita" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.estadoCitas.map((estadoCita, key) => (
+                            <option 
+                                selected={estadoCita.ID_EstadoCita === cita.ID_EstadoCita} 
+                                key={key} 
+                                value={estadoCita.ID_EstadoCita}>
+                                {estadoCita.Descripcion}
+                            </option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-            <Form.Group controlId="formGridFechaNacimiento">
+            <Form.Group controlId="formGridClienteId">
                 <Form.Label> Cliente </Form.Label>
-                <Form.Control onChange={handleInputChange} name="ID_Cliente" value={cita.ID_Cliente} onKeyDown={handleKeyDown}/>
+                <Form.Control as="select" name="ID_Cliente" onChange={handleInputChange}>
+                    <option/>
+                    {
+                        props.clientes.map((cliente, key) => (
+                            <option 
+                                selected={cliente.ID_Cliente === cita.ID_Cliente} 
+                                key={key} 
+                                value={cliente.ID_Cliente}>
+                                {cliente.Cedula}
+                            </option>
+                        ))
+                    }
+                </Form.Control>
             </Form.Group>
-                
             <Form.Row>
                 <Link to="/citas" className="btn btn-primary mr-3"> Atrás </Link>
-                <Link to="/citas" className="btn btn-primary" onClick={handleButtonClick}> Editar </Link>
+                <Link to="/citas" className="btn btn-primary" onClick={handleSubmit}> Editar </Link>
             </Form.Row>
+        </Form>
     </div>
     )
 }

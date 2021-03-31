@@ -2,3 +2,13 @@
     "NombreRol": "Admin",
     "DescripcionRol": "Este es el rol de administrador"
 }
+
+{
+    "NombreRol": "Usuario",
+    "DescripcionRol": "Este es el rol de usuario"
+}
+
+{
+    "NombreRol": "Cliente",
+    "DescripcionRol": "Este es el rol de cliente"
+}

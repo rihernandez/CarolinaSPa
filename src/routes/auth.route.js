@@ -8,8 +8,4 @@ module.exports = app => {
     router.post("/login", auth.login);
 
     app.use('/api', router);
-
-
-
-
 }

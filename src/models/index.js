@@ -96,10 +96,7 @@ db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 /************************************************************************************************ */
 //Michael
 
-// db.citas = require("./citas.model")(sequelize, Sequelize);
-// db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.citas = require("./citas.model")(sequelize, Sequelize);
-
 db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.cliente = require("./clientes.model")(sequelize, Sequelize);
 db.estadofactura = require("./estadofactura.model")(sequelize, Sequelize);
@@ -109,6 +106,9 @@ db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
 db.proveedor = require("./proveedor.model.js")(sequelize, Sequelize);
 db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
+db.citas.belongsTo(db.estadocita, {foreignKey: 'ID_EstadoCita', targetKey: 'ID_EstadoCita'})
+db.citas.belongsTo(db.cliente, {foreignKey: 'ID_Cliente', targetKey: 'ID_Cliente', constraints: false});
+db.citas.belongsTo(db.servicios, {foreignKey: 'ID_Servicio', targetKey: 'id_servicio'})
 /************************************************************************************************ */
 //Daviel
 

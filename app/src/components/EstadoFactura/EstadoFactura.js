@@ -11,7 +11,6 @@ function EstadoFactura() {
 
   useEffect(() => {
     getAllFacturas().then(response => setEstadoFactura(response.data));
-    console.log('hi')
   }, []);
 
   const apiUrl = 'http://localhost:8990/api/estadofactura/';

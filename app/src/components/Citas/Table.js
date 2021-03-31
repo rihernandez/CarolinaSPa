@@ -18,9 +18,9 @@ const EstadoFacturaTable = (props) => (
                 props.citas.map(cita => (
                 <tr key={cita.ID_Cita}>
                     <th scope="row" >{cita.ID_Cita}</th>
-                    <td>{cita.ID_Servicio ?? ''}</td>
-                    <td>{cita.ID_EstadoCita ?? null}</td>
-                    <td>{cita.ID_Cliente ?? null}</td>
+                    <td>{cita.servicio.servicio ?? ''}</td>
+                    <td>{cita.EstadoCitum.Descripcion ?? null}</td>
+                    <td>{cita.Cliente.Cedula ?? null}</td>
                     <td>
                         <Link to={`/citas/edit/${cita.ID_Cita}`} className="btn btn-warning"> Edit </Link>
                         <button className="btn btn-danger ml-2" onClick={(e) => {

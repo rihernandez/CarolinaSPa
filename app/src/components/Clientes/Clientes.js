@@ -11,7 +11,6 @@ function Clientes() {
 
   useEffect(() => {
     getAllClientes().then(response => setClientes(response.data));
-    console.log('hi')
   }, []);
 
   const apiUrl = 'http://localhost:8990/api/clientes/';

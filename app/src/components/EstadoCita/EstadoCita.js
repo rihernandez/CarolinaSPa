@@ -11,7 +11,6 @@ function EstadoCita() {
 
   useEffect(() => {
     getAllEstadosCitas().then(response => setEstadoCitas(response.data));
-    console.log('hi')
   }, []);
 
   const apiUrl = 'http://localhost:8990/api/estadocita/';

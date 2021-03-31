@@ -11,7 +11,6 @@ function Citas() {
 
   useEffect(() => {
     getAllCitas().then(response => setCitas(response.data));
-    console.log('hi')
   }, []);
 
   const apiUrl = 'http://localhost:8990/api/citas/';
@@ -66,13 +65,31 @@ function Citas() {
       }
   }
 
+  const [servicios, setServicios] = useState([]);
+    useEffect(() => {
+        let url = 'http://localhost:8990/api/servicios/';
+        axios.get(url).then(response => setServicios(response.data));
+    }, [])
+
+    const [estadoCitas, setEstadoCitas] = useState([]);
+    useEffect(() => {
+        let url = 'http://localhost:8990/api/estadocita/';
+        axios.get(url).then(response => setEstadoCitas(response.data));
+    }, [])
+
+    const [clientes, setClientes] = useState([]);
+    useEffect(() => {
+        let url = 'http://localhost:8990/api/clientes/';
+        axios.get(url).then(response => setClientes(response.data));
+    }, [])
+
   let { path, url } = useRouteMatch();
   
   return (
     <div>
       <Switch>
-        <Route path={`${path}/create`} render={() => <CreateForm createCita={createCita}/>}/>
-        <Route path={`${path}/edit/:id`} render={() => <EditForm getCita={getCita} updateCita={updateCita}/>}/>
+        <Route path={`${path}/create`} render={() => <CreateForm createCita={createCita} servicios={servicios} estadoCitas={estadoCitas} clientes={clientes}/>}/>
+        <Route path={`${path}/edit/:id`} render={() => <EditForm getCita={getCita} updateCita={updateCita} createCita={createCita} servicios={servicios} estadoCitas={estadoCitas} clientes={clientes}/>}/>
         <Route exact path={`${path}`}>
           <Link className="btn btn-primary" to={`${url}/create`}> Crear Cita </Link>
           <Table citas={citas} deleteCita={deleteCita}/>

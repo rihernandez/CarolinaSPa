@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import CreateProveedor from './components/CreateProveedor'
 import CreateCategoria from './components/CreateCategoria'
@@ -18,23 +18,23 @@ function App() {
   return (
     <Router>
       <Navigation/>
-      <div className="container p-4">
-        <Route path="/" exact/>
-        <Route path="/proveedor" component={ CreateProveedor }/>
-        <Route path="/categoria" component={ CreateCategoria }/>
-        <Route path="/producto" component={ CreateProducto }/>
-        <Route path="/productos" component={ ProductList }/>
-        <Route path="/inventario" component={ CreateInventario }/>
-        <Route path="/inventarios" component={ InventarioList }/>
-        <Route path="/edit/:id" component={ CreateProducto }/>
-        <Route path="/edit-proveedor/:id" component={ CreateProveedor }/>
-        <Route path="/edit-categoria/:id" component={ CreateCategoria }/>
-        <Route path="/edit-inventario/:id" component={ CreateInventario }/>
-        <Route path='/estadofactura' component={EstadoFactura}/>
-        <Route path='/clientes' component={Clientes}/>
-        <Route path='/estadocita' component={EstadoCita}/>
-        <Route path='/citas' component={Citas}/>
-      </div>
+        <div className="container p-4">
+          <Route path="/" exact/>
+          <Route path="/proveedor" component={ CreateProveedor }/>
+          <Route path="/categoria" component={ CreateCategoria }/>
+          <Route path="/producto" component={ CreateProducto }/>
+          <Route path="/productos" component={ ProductList }/>
+          <Route path="/inventario" component={ CreateInventario }/>
+          <Route path="/inventarios" component={ InventarioList }/>
+          <Route path="/edit/:id" component={ CreateProducto }/>
+          <Route path="/edit-proveedor/:id" component={ CreateProveedor }/>
+          <Route path="/edit-categoria/:id" component={ CreateCategoria }/>
+          <Route path="/edit-inventario/:id" component={ CreateInventario }/>
+          <Route path='/estadofactura' component={EstadoFactura}/>
+          <Route path='/clientes' component={Clientes}/>
+          <Route path='/estadocita' component={EstadoCita}/>
+          <Route path='/citas' component={Citas}/>
+        </div>
     </Router>
   );
 }
