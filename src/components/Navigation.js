@@ -1,5 +1,6 @@
+
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 class Navigation extends Component {
     render() {
@@ -17,12 +18,25 @@ class Navigation extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/albums/create"> Create Album </Link>
                             </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/estadofactura" activeClassName='active'> Estado Factura </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/clientes" activeClassName='active'> Clientes </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/estadocita" activeClassName='active'> Estado de cita </NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/citas" activeClassName='active'> Citas </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         );
     }
+
 }
 
 export default Navigation;
