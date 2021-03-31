@@ -1,5 +1,8 @@
 const db = require("../models");
 const Citas = db.citas;
+const EstadoCita = db.estadocita;
+const Clientes = db.cliente;
+const Servicios = db.servicios;
 const Op = db.Sequelize.Op;
 
 //Create and save a new cita
@@ -7,17 +10,27 @@ exports.create = (req, res) => {
   Citas.create(req.body)
        .then(result => res.json(result))
        .catch(err =>{
-         res.status(412).json({error: err.message})
+         res.status(412).json({err})
        });
 };
 
 //Retrieve all citas from the database.
 exports.findAll = (req, res) => {
-  Citas.findAll()
-        .then(result => res.json(result))
-        .catch(error => {
-            res.status(412).json({error: error.message });
-        });
+  Citas.findAll({
+    include: [{
+        model:EstadoCita, required: true
+    },
+    {
+      model:Servicios, required: true
+    },
+    {
+      model:Clientes, required: true
+    }]
+  })
+    .then(result => res.json(result))
+    .catch(error => {
+        res.status(412).json({error: error.message });
+    });
 };
 
 //Find a single cita with an id
