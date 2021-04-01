@@ -69,6 +69,7 @@ const SignUp = ({ history }) => {
               value={userInfo.Cedula}
               onChange={handleChange}
             />
+            <label>Fecha de nacimiento</label>
             <TextField
               icon="far fa-calendar"
               name="FechaNacimiento"
