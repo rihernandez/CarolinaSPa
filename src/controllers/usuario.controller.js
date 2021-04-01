@@ -67,13 +67,13 @@ exports.findOne = async(req, res) => {
     //     });
 
     const user = await db.sequelize.query(
-        "SELECT ID_Usuario, Nombre, Apellidos, Email, NombreRol FROM Usuarios inner join Rols ON Usuarios.ID_Rol = Rols.ID_Rol WHERE ID_Usuario = :ID_Usuario", {
+        "SELECT ID_Usuario, Nombre, FechaNacimiento, Cedula, Apellidos, Email, NombreRol FROM Usuarios inner join Rols ON Usuarios.ID_Rol = Rols.ID_Rol WHERE ID_Usuario = :ID_Usuario", {
             replacements: { ID_Usuario: `${req.params.id}` },
             type: QueryTypes.SELECT,
         }
     );
-
-    res.json(user);
+    const usuario = user ? user[0] : null;
+    res.json(usuario);
 };
 
 // Update a User by the id in the request
