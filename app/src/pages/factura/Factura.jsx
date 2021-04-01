@@ -1,13 +1,12 @@
 import React from "react";
 import GenericTable from "../../components/GenericTable";
 import { call } from "../../utils/api";
+import { withRouter } from "react-router-dom";
+import { isAdmin } from "../../utils/auth";
 
 const headers = [
   "ID Factura",
-  "ID Producto",
   "Nombre Producto",
-  "Nombre Usuario",
-  "Apellido Usuario",
   "Nombre Cliente",
   "Apellido Cliente",
   "Estado Factura",
@@ -16,10 +15,7 @@ const headers = [
 
 const fields = [
   "ID_Factura",
-  "ID_Producto",
   "nombreProducto",
-  "Usu_N",
-  "Usu_AP",
   "Cli_N",
   "Cli_A",
   "EstF_Des",
@@ -31,12 +27,16 @@ const Factura = ({ history }) => {
 
   const getFacturas = React.useCallback(async () => {
     try {
-      const res = await call("get", "/factura");
+      const res = await call("get", "factura");
       if (Array.isArray(res)) setFacturas(res);
     } catch (e) {
       console.log("Error fetching facturas", e);
     }
   }, []);
+
+  const handleRowSelected = (id) => {
+    history.replace(`/factura/detalle/${id}`);
+  };
 
   React.useEffect(() => {
     getFacturas();
@@ -49,14 +49,25 @@ const Factura = ({ history }) => {
           <h3>Facturas</h3>
         </div>
         <div style={{ width: 300 }}>
-          <button type="button" className="btn btn-primary">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => history.replace("/factura/detalle")}
+          >
             Crear Factura
           </button>
         </div>
       </div>
-      <GenericTable headers={headers} fields={fields} data={facturas} />
+      <GenericTable
+        headers={headers}
+        fields={fields}
+        data={facturas}
+        idName="ID_Factura"
+        onRowSelected={handleRowSelected}
+        showDelete={isAdmin()}
+      />
     </div>
   );
 };
 
-export default Factura;
+export default withRouter(Factura);
