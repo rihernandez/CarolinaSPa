@@ -1,5 +1,7 @@
 const db = require("../models");
 const Inventario = db.inventario;
+const Proveedore = db.proveedor;
+const Producto = db.productos;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -12,8 +14,16 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Tutorials from the database.
+
 exports.findAll = (req, res) => {
-    Inventario.findAll({})
+    Inventario.findAll({
+        include: [{
+            model:Proveedore,  required: true
+        },
+        {
+            model:Producto, required:true
+        }]
+    })
         .then(result => res.json(result))
         .catch(error => {
             res.status(412).json({error: err.message});
@@ -22,7 +32,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
-    Inentario.findOne({where: {id_Inventario: req.params.id}})
+    Inventario.findOne({where: {id_Inventario: req.params.id}})
         .then(result => res.json(result))
         .catch(error => {
             res.status(412).json({error: err.message});

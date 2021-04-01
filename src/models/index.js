@@ -73,12 +73,12 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 // db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
 // db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
 
-// db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-// db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-// db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-// db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-// db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
-// db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
+//db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+//db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+//db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
+//db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
+//db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
+//db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
 // db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
 // db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
 //db.inventario.hasMany(db.productos, {foreignKey: 'id_inventario', sourceKey: 'id_Inventario'});
@@ -101,10 +101,7 @@ db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 /************************************************************************************************ */
 //Michael
 
-// db.citas = require("./citas.model")(sequelize, Sequelize);
-// db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.citas = require("./citas.model")(sequelize, Sequelize);
-
 db.estadocita = require("./estadocita.model")(sequelize, Sequelize);
 db.cliente = require("./clientes.model")(sequelize, Sequelize);
 db.estadofactura = require("./estadofactura.model")(sequelize, Sequelize);
@@ -114,8 +111,55 @@ db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
 db.proveedor = require("./proveedor.model.js")(sequelize, Sequelize);
 db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
+db.citas.belongsTo(db.estadocita, {
+    foreignKey: "ID_EstadoCita",
+    targetKey: "ID_EstadoCita",
+});
+db.citas.belongsTo(db.cliente, {
+    foreignKey: "ID_Cliente",
+    targetKey: "ID_Cliente",
+    constraints: false,
+});
+db.citas.belongsTo(db.servicios, {
+    foreignKey: "ID_Servicio",
+    targetKey: "id_servicio",
+});
 /************************************************************************************************ */
 //Daviel
+
+db.proveedor.hasMany(db.productos, {
+    foreignKey: "id_proveedor",
+    sourceKey: "id_Proveedor",
+});
+db.productos.belongsTo(db.proveedor, {
+    foreignKey: "id_proveedor",
+    targetKey: "id_Proveedor",
+});
+db.categorias.hasMany(db.productos, {
+    foreignKey: "id_categoria",
+    sourceKey: "id_Categoria",
+});
+db.productos.belongsTo(db.categorias, {
+    foreignKey: "id_categoria",
+    targetKey: "id_Categoria",
+});
+db.productos.hasMany(db.inventario, {
+    foreignKey: "id_producto",
+    sourceKey: "id_Producto",
+});
+db.inventario.belongsTo(db.productos, {
+    foreignKey: "id_producto",
+    targetKey: "id_Producto",
+});
+db.proveedor.hasMany(db.inventario, {
+    foreignKey: "id_proveedor",
+    sourceKey: "id_Proveedor",
+});
+db.inventario.belongsTo(db.proveedor, {
+    foreignKey: "id_proveedor",
+    targetKey: "id_Proveedor",
+});
+
 db.rol = require("./rol.model")(sequelize, Sequelize);
 db.usuario = require("./usuario.model.js")(sequelize, Sequelize);
 db.facturaDetalleProducto = require("./facturaDetalleProducto.model")(
