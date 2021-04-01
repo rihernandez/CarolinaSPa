@@ -9,9 +9,11 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
         max: dbConfig.pool.max,
         min: dbConfig.pool.min,
         acquire: dbConfig.pool.acquire,
-        idle: dbConfig.pool.idle
-    }
+        idle: dbConfig.pool.idle,
+    },
 });
+
+module.exports.sequelize = sequelize;
 
 const db = {};
 
@@ -44,7 +46,6 @@ Richard HC
 // db.perfiles.belongsTo(db.cliente, {foreignKey: 'id_cliente', targetKey: 'ID_Cliente'});
 // db.cliente.hasMany(db.perfiles, {foreignKey: 'id_cliente', sourceKey: 'ID_Cliente'});
 
-
 // //factura servicio foraignKeys
 // db.facturaservicio.belongsToMany(db.servicios, { as: 'fk_facturaservicio', through: 'servicio_factura_servicio', foreignKey: 'id_facturaservicio', otherKey: 'id_servicio'});
 // db.servicios.belongsToMany(db.facturaservicio, { as: 'fk_servicio', through: 'servicio_factura_servicio', foreignKey: 'id_servicio', otherKey: 'id_facturaservicio'});
@@ -57,7 +58,6 @@ Richard HC
 // db.estadofactura.hasMany(db.facturaservicio, { foreignKey: 'id_estadofactura', sourceKey: 'ID_EstadoFactura'});
 // db.facturaservicio.belongsTo(db.facturaserviciodet, {foreignKey: 'id_facturaservicio', targetKey: 'id_facturaservicio'});
 // db.facturaserviciodet.hasOne(db.facturaservicio, {foreignKey: 'id_facturaservicio', targetKey: 'id_facturaservicio'});
-
 
 //perfiles foreignKeys
 
@@ -73,7 +73,6 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 // db.test1.hasMany(db.test2, {foreignKey: 'fk_test1Id', sourceKey: 'uuid'});
 // db.test2.belongsTo(db.test1, {foreignKey: 'fk_test1Id', targetKey: 'uuid'});
 
-
 //db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
 //db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
 //db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
@@ -88,8 +87,14 @@ db.citas.belongsToMany(db.servicios, { as: 'fk_servicio', through: 'servicios_ci
 /************************************************************************************************ */
 //Adrian
 
-db.facturaservicio = require("./facturaservicio.model.js")(sequelize, Sequelize);
-db.facturaserviciodet = require("./facturaserviciodet.model.js")(sequelize, Sequelize);
+db.facturaservicio = require("./facturaservicio.model.js")(
+    sequelize,
+    Sequelize
+);
+db.facturaserviciodet = require("./facturaserviciodet.model.js")(
+    sequelize,
+    Sequelize
+);
 db.perfiles = require("./perfiles.models.js")(sequelize, Sequelize);
 db.servicios = require("./servicios.models.js")(sequelize, Sequelize);
 
@@ -106,28 +111,61 @@ db.inventario = require("./inventario.model.js")(sequelize, Sequelize);
 db.proveedor = require("./proveedor.model.js")(sequelize, Sequelize);
 db.categorias = require("./categoria.model.js")(sequelize, Sequelize);
 
-db.citas.belongsTo(db.estadocita, {foreignKey: 'ID_EstadoCita', targetKey: 'ID_EstadoCita'})
-db.citas.belongsTo(db.cliente, {foreignKey: 'ID_Cliente', targetKey: 'ID_Cliente', constraints: false});
-db.citas.belongsTo(db.servicios, {foreignKey: 'ID_Servicio', targetKey: 'id_servicio'})
+db.citas.belongsTo(db.estadocita, {
+    foreignKey: "ID_EstadoCita",
+    targetKey: "ID_EstadoCita",
+});
+db.citas.belongsTo(db.cliente, {
+    foreignKey: "ID_Cliente",
+    targetKey: "ID_Cliente",
+    constraints: false,
+});
+db.citas.belongsTo(db.servicios, {
+    foreignKey: "ID_Servicio",
+    targetKey: "id_servicio",
+});
 /************************************************************************************************ */
 //Daviel
 
-db.proveedor.hasMany(db.productos, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-db.productos.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-db.categorias.hasMany(db.productos, {foreignKey: 'id_categoria', sourceKey: 'id_Categoria'});
-db.productos.belongsTo(db.categorias, {foreignKey: 'id_categoria', targetKey: 'id_Categoria'});
-db.productos.hasMany(db.inventario, {foreignKey: 'id_producto', sourceKey: 'id_Producto'});
-db.inventario.belongsTo(db.productos, {foreignKey: 'id_producto', targetKey: 'id_Producto'});
-db.proveedor.hasMany(db.inventario, {foreignKey: 'id_proveedor', sourceKey: 'id_Proveedor'});
-db.inventario.belongsTo(db.proveedor, {foreignKey: 'id_proveedor', targetKey: 'id_Proveedor'});
-
+db.proveedor.hasMany(db.productos, {
+    foreignKey: "id_proveedor",
+    sourceKey: "id_Proveedor",
+});
+db.productos.belongsTo(db.proveedor, {
+    foreignKey: "id_proveedor",
+    targetKey: "id_Proveedor",
+});
+db.categorias.hasMany(db.productos, {
+    foreignKey: "id_categoria",
+    sourceKey: "id_Categoria",
+});
+db.productos.belongsTo(db.categorias, {
+    foreignKey: "id_categoria",
+    targetKey: "id_Categoria",
+});
+db.productos.hasMany(db.inventario, {
+    foreignKey: "id_producto",
+    sourceKey: "id_Producto",
+});
+db.inventario.belongsTo(db.productos, {
+    foreignKey: "id_producto",
+    targetKey: "id_Producto",
+});
+db.proveedor.hasMany(db.inventario, {
+    foreignKey: "id_proveedor",
+    sourceKey: "id_Proveedor",
+});
+db.inventario.belongsTo(db.proveedor, {
+    foreignKey: "id_proveedor",
+    targetKey: "id_Proveedor",
+});
 
 db.rol = require("./rol.model")(sequelize, Sequelize);
 db.usuario = require("./usuario.model.js")(sequelize, Sequelize);
-db.factura = require("./factura.model")(sequelize, Sequelize);
-db.facturaDetalle = require("./facturaDetalle.model")(sequelize, Sequelize);
-
-
+db.facturaDetalleProducto = require("./facturaDetalleProducto.model")(
+    sequelize,
+    Sequelize
+);
+db.facturaProducto = require("./facturaProducto.model")(sequelize, Sequelize);
 
 module.exports = db;
-
