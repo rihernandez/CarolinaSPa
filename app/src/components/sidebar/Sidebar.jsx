@@ -29,6 +29,8 @@ const linksAdmin = [
 ];
 
 const Sidebar = () => {
+  const [active, setActive] = React.useState("Factura");
+
   const user = getUser();
   return (
     <div className="sidebar">
@@ -45,7 +47,12 @@ const Sidebar = () => {
       </div>
 
       {links.map((link, i) => (
-        <Link className={"navbar-brand"} to={link.path} key={i}>
+        <Link
+          className={`navbar-brand ${active === link.title ? "active" : ""}`}
+          to={link.path}
+          key={i}
+          onClick={() => setActive(link.title)}
+        >
           <i className={link.icon}></i> {link.title}
         </Link>
       ))}
@@ -53,7 +60,14 @@ const Sidebar = () => {
       {isAdmin() && (
         <>
           {linksAdmin.map((link, i) => (
-            <Link className={"navbar-brand"} to={link.path} key={i}>
+            <Link
+              className={`navbar-brand ${
+                active === link.title ? "active" : ""
+              }`}
+              to={link.path}
+              key={i}
+              onClick={() => setActive(link.title)}
+            >
               <i className={link.icon}></i> {link.title}
             </Link>
           ))}

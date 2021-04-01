@@ -1,27 +1,69 @@
 import React from "react";
 
-const GenericTable = ({ fields = [], headers = [], data = [] }) => {
+const GenericTable = ({
+  fields = [],
+  headers = [],
+  data = [],
+  onRowSelected = () => {},
+  onDeleteRow = () => {},
+  idName = "",
+  showDelete = false,
+}) => {
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          {headers.map((header, i) => (
-            <th scope="col" key={i}>
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((element, i) => (
-          <tr key={i}>
-            {fields.map((field, f) => (
-              <td key={f}>{element[field]}</td>
+    <div
+      style={{
+        maxHeight: "400px",
+        maxWidth: "1500px",
+        overflowY: "scroll",
+        overflowX: "scroll",
+      }}
+    >
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            {headers.map((header, i) => (
+              <th
+                scope="col"
+                key={i}
+                style={{ wordBreak: "keep-all", whiteSpace: "nowrap" }}
+              >
+                {header}
+              </th>
             ))}
+            {showDelete && (
+              <th scope="col" style={{ textAlign: "center" }}>
+                Eliminar
+              </th>
+            )}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((element, i) => (
+            <tr
+              key={i}
+              style={{ cursor: "pointer" }}
+              onClick={() => onRowSelected(element[idName])}
+            >
+              {fields.map((field, f) => (
+                <td key={f}>{element[field]}</td>
+              ))}
+
+              {showDelete && (
+                <td
+                  style={{ textAlign: "center", color: "red" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDeleteRow(element[idName]);
+                  }}
+                >
+                  <i className="fas fa-trash-alt"></i>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

@@ -19,11 +19,12 @@ const Select = ({
         onChange={onChange}
         value={value}
         name={name}
+        required
         {...rest}
       >
         <option>----</option>
         {options.map((option, i) => (
-          <option key={i}>
+          <option key={i} value={option[optionsLabel]}>
             {optionLabelExpression
               ? // eslint-disable-next-line
                 eval(optionLabelExpression)
