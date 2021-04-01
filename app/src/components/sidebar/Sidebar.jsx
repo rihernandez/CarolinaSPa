@@ -47,12 +47,16 @@ const Sidebar = () => {
       </div>
 
       {links.map((link, i) => (
+<<<<<<< HEAD
         <Link
           className={`navbar-brand ${active === link.title ? "active" : ""}`}
           to={link.path}
           key={i}
           onClick={() => setActive(link.title)}
         >
+=======
+        <Link className={"navbar-brand"} to={link.path} key={i}>
+>>>>>>> 3693dd4... auth impl working, Create edit factura impl started, sidebar design changed
           <i className={link.icon}></i> {link.title}
         </Link>
       ))}
@@ -60,6 +64,7 @@ const Sidebar = () => {
       {isAdmin() && (
         <>
           {linksAdmin.map((link, i) => (
+<<<<<<< HEAD
             <Link
               className={`navbar-brand ${
                 active === link.title ? "active" : ""
@@ -68,6 +73,9 @@ const Sidebar = () => {
               key={i}
               onClick={() => setActive(link.title)}
             >
+=======
+            <Link className={"navbar-brand"} to={link.path} key={i}>
+>>>>>>> 3693dd4... auth impl working, Create edit factura impl started, sidebar design changed
               <i className={link.icon}></i> {link.title}
             </Link>
           ))}

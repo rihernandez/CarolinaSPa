@@ -19,12 +19,19 @@ const Select = ({
         onChange={onChange}
         value={value}
         name={name}
+<<<<<<< HEAD
         required
+=======
+>>>>>>> 3693dd4... auth impl working, Create edit factura impl started, sidebar design changed
         {...rest}
       >
         <option>----</option>
         {options.map((option, i) => (
+<<<<<<< HEAD
           <option key={i} value={option[optionsLabel]}>
+=======
+          <option key={i}>
+>>>>>>> 3693dd4... auth impl working, Create edit factura impl started, sidebar design changed
             {optionLabelExpression
               ? // eslint-disable-next-line
                 eval(optionLabelExpression)
