@@ -18,7 +18,7 @@ const GenericTable = ({
         overflowX: "scroll",
       }}
     >
-      <table className="table table-striped">
+      <table className="table table-dark">
         <thead>
           <tr>
             {headers.map((header, i) => (
