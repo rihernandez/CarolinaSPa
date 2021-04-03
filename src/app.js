@@ -37,10 +37,8 @@ db.sequelize.sync();
 
 // configure middleware
 
-var corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true,
-};
+app.use(cors());
+app.options("*", cors()); // include before other routes
 
 app.set("port", process.env.PORT || 8990);
 
@@ -50,8 +48,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(auth.verifyToken);
-//app.use(auth.verifyToken)
-app.use(cors(corsOptions));
 
 // routes for the app
 require("./routes/test.route")(app);

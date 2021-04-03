@@ -48,7 +48,7 @@ const Factura = ({ history }) => {
         <div>
           <h3>Facturas</h3>
         </div>
-        <div style={{ width: 300 }}>
+        <div style={{ width: 150 }}>
           <button
             type="button"
             className="btn btn-primary"
