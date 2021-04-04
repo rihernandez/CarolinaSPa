@@ -115,100 +115,109 @@ class CreateInventario extends Component {
         });
     };
 
-    render() {
-        return ( <
-            div className = "row" >
-            <
-            div className = "col-md-8 mx-auto" >
-            <
-            div className = "card card-body" >
-            <
-            h3 className = "text-center" > Crear a Nuevo Inventario < /h3>{" "} <
-            form onSubmit = { this.onSubmit } >
-            <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Proveedor * < /label>{" "} <
-            select name = "proveedor_id"
-            onChange = { this.onChange }
-            className = "form-control"
-            value = { this.state.proveedor_id } >
-            {
-                this.state.productos.map((producto) => ( <
-                    option value = { producto.Proveedor.id_Proveedor }
-                    key = { producto.Proveedor.id_Proveedor } >
-                    { producto.Proveedor.proveedor } { " " } <
-                    /option>
-                ))
-            } { " " } <
-            /select>{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Producto * < /label>{" "} <
-            select name = "producto_id"
-            onChange = { this.onChange }
-            className = "form-control"
-            value = { this.state.producto_id } >
-            {
-                this.state.productos.map((producto) => ( <
-                    option value = { producto.id_Producto }
-                    key = { producto.id_Producto } >
-                    { producto.nombreProducto } { " " } <
-                    /option>
-                ))
-            } { " " } <
-            /select>{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Cantidad * < /label>{" "} <
-            input type = "text"
-            name = "cantidad"
-            onChange = { this.onChange }
-            value = { this.state.cantidad }
-            className = "form-control" /
-            >
-            <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Cantidad Minima * < /label>{" "} <
-            input type = "text"
-            name = "cantidadMin"
-            className = "form-control"
-            onChange = { this.onChange }
-            value = { this.state.cantidadMin }
-            />{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Fecha Entrada * < /label> <br / >
-            <
-            DatePicker className = "form-control"
-            selected = { this.state.fechaEnt }
-            onChange = { this.onChangeDateEnt }
-            value = { this.state.fechaEnt } >
-            < /DatePicker>{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            label className = "text-muted" > Fecha Vencimiento * < /label>{" "} <
-            br / >
-            <
-            DatePicker className = "form-control"
-            selected = { this.state.fechaVen }
-            onChange = { this.onChangeDateVen }
-            value = { this.state.fechaVen } >
-            < /DatePicker>{" "} <
-            /div>{" "} <
-            button className = "btn btn-success btn-block" > Guardar < /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            /div>{" "} <
-            /div>
-        );
+     render() {
+        return (
+            <div className="row">
+                <div className="col-md-8 mx-auto">
+                    <div className="card card-body">
+                        <h3 className="text-center">Crear a Nuevo Inventario</h3>
+                        <form onSubmit={this.onSubmit}>
+                            <div className="form-group">
+                                <label className="text-muted">Proveedor *</label>
+                                <select
+                                    name="proveedor_id"
+                                    onChange={this.onChange}
+                                    className="form-control"
+                                    value={this.state.proveedor_id}
+
+                                >
+                                    {
+                                        this.state.productos.map(producto => (
+                                            <option
+                                                value={producto.Proveedor.id_Proveedor}
+                                                key={producto.Proveedor.id_Proveedor}
+                                            >
+                                                {producto.Proveedor.proveedor}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label className="text-muted">Producto *</label>
+                                <select
+                                    name="producto_id"
+                                    onChange={this.onChange}
+                                    className="form-control"
+                                    value={this.state.producto_id}
+                                >
+                                    {
+                                        this.state.productos.map(producto => (
+                                            <option
+                                                value={producto.id_Producto}
+                                                key={producto.id_Producto}
+                                            >
+                                                {producto.nombreProducto}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label className="text-muted">Cantidad *</label>
+                                <input
+                                    type="text"
+                                    name="cantidad"
+                                    onChange={this.onChange}
+                                    value={this.state.cantidad}
+                                    className="form-control"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="text-muted">Cantidad Minima *</label>
+                                <input
+                                    type="text"
+                                    name="cantidadMin"
+                                    className="form-control"
+                                    onChange={this.onChange}
+                                    value={this.state.cantidadMin} />
+                            </div>
+                            <div className="form-group">
+                                <label className="text-muted">Fecha Entrada *</label>
+                                <br />
+                                <DatePicker
+                                    className="form-control"
+                                    selected={this.state.fechaEnt}
+                                    onChange={this.onChangeDateEnt}
+                                    value={this.state.fechaEnt}
+                                >
+
+                                </DatePicker>
+                            </div>
+                            <div className="form-group">
+                                <label className="text-muted">Fecha Vencimiento *</label>
+                                <br />
+                                <DatePicker
+                                    className="form-control"
+                                    selected={this.state.fechaVen}
+                                    onChange={this.onChangeDateVen}
+                                    value={this.state.fechaVen}
+                                >
+
+                                </DatePicker>
+                            </div>
+                            <button className="btn btn-success btn-block">Guardar</button>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        )
     }
+
 }
+
 
 export default CreateInventario;
