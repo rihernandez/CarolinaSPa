@@ -30,11 +30,11 @@ const GenericTable = ({
                 {header}
               </th>
             ))}
-            {showDelete && (
+            {/* {showDelete && (
               <th scope="col" style={{ textAlign: "center" }}>
                 Eliminar
               </th>
-            )}
+            )} */}
           </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@ const GenericTable = ({
                 <td key={f}>{element[field]}</td>
               ))}
 
-              {showDelete && (
+              {/* {showDelete && (
                 <td
                   style={{ textAlign: "center", color: "red" }}
                   onClick={(e) => {
@@ -58,7 +58,7 @@ const GenericTable = ({
                 >
                   <i className="fas fa-trash-alt"></i>
                 </td>
-              )}
+              )} */}
             </tr>
           ))}
         </tbody>
