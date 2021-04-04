@@ -51,54 +51,54 @@ export default class CreateServicio extends Component {
         });
     };
 
-    render() {
-        return ( <
-            div className = "col-md-6 offset-md-3" >
-            <
-            div className = "card card-body" >
-            <
-            h4 > Crear Servicio < /h4>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Nombre del Servicio"
-            name = "servicio"
-            required onChange = { this.onInputChange }
-            value = { this.state.servicio }
-            />{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            textarea className = "form-control"
-            placeholder = "Descripcion del servicio"
-            name = "descripcion"
-            required onChange = { this.onInputChange }
-            value = { this.state.descripcion }
-            />{" "} <
-            /div>{" "} <
-            div className = "input-group mb-3" >
-            <
-            input type = "text"
-            className = "form-control"
-            label = "Dollar amount (with dot and two decimal places)"
-            placeholder = "precio del servicio"
-            name = "precio"
-            required onChange = { this.onInputChange }
-            value = { this.state.precio }
-            />{" "} <
-            /div>{" "} <
-            form onSubmit = { this.onSubmit } >
-            <
-            br / >
-            <
-            button type = "submit"
-            className = "btn btn-primary" >
-            Añadir { " " } <
-            /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            /div>
-        );
-    }
+render() {
+		return (
+			<div className='col-md-6 offset-md-3'>
+				<div className='card card-body'>
+					<h4>Crear Servicio</h4>
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Nombre del Servicio'
+							name='servicio'
+							required
+							onChange={this.onInputChange}
+							value={this.state.servicio}
+						/>
+					</div>
+
+					<div className='form-group'>
+						<textarea
+							className='form-control'
+							placeholder='Descripcion del servicio'
+							name='descripcion'
+							required
+							onChange={this.onInputChange}
+							value={this.state.descripcion}
+						/>
+					</div>
+
+					<div className='input-group mb-3'>
+						<input
+							type='text'
+							className='form-control'
+							aria-label='Dollar amount (with dot and two decimal places)'
+							placeholder='precio del servicio'
+							name='precio'
+							required
+							onChange={this.onInputChange}
+							value={this.state.precio}
+						/>
+					</div>
+					<form onSubmit={this.onSubmit}>
+						<br />
+						<button type='submit' className='btn btn-primary'>
+							Añadir
+						</button>
+					</form>
+				</div>
+			</div>
+		);
+	}
 }
