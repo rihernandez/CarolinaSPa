@@ -1,40 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
 
 function EditFormCliente(props) {
-
     let { id } = useParams();
     const [cliente, setCliente] = useState([]);
 
-    useEffect(() =>{
-        props.getCliente(id)
-             .then(response => setCliente(response.data));
+    useEffect(() => {
+        props.getCliente(id).then((response) => setCliente(response));
     }, [props, id]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setCliente({ ...cliente, [name]: value});
-    }
-    
+        setCliente({...cliente, [name]: value });
+    };
+
     const handleButtonClick = (e) => {
-        if(!cliente) return;
+        if (!cliente) return;
         e.preventDefault();
 
         props.updateCliente(id, cliente);
-        window.location.href='/clientes';
-    }
-    
+        window.location.href = "/clientes";
+    };
+
     const handleKeyDown = (event) => {
-        if(event.key !== 'Enter' || !cliente) return;
+        if (event.key !== "Enter" || !cliente) return;
         event.preventDefault();
 
         props.updateCliente(id, cliente);
-        window.location.href='/clientes';
-    }
-    
+        window.location.href = "/clientes";
+    };
 
-    return(
+       return(
     <div>
         <h1>Editar estado de factura</h1>
         <Form.Group controlId="formGridNombre">

@@ -61,64 +61,65 @@ export default class CreateFactServ extends Component {
         });
     };
 
-    render() {
-        return ( <
-            div className = "col-md-6 offset-md-3" >
-            <
-            div className = "card card-body" >
-            <
-            h4 > Crear nueva factura de servicio < /h4>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Id del servicio"
-            name = "id_servicio"
-            required onChange = { this.onInputChange }
-            value = { this.state.id_servicio }
-            />{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Id del usuario"
-            name = "id_usuario"
-            required onChange = { this.onInputChange }
-            value = { this.state.id_usuario }
-            />{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Id del cliente"
-            name = "id_cliente"
-            required onChange = { this.onInputChange }
-            value = { this.state.id_cliente }
-            />{" "} <
-            /div>{" "} <
-            div className = "input-group mb-3" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Id del estado de factura"
-            name = "id_estadofactura"
-            required onChange = { this.onInputChange }
-            value = { this.state.id_estadofactura }
-            />{" "} <
-            /div>{" "} <
-            form onSubmit = { this.onSubmit } >
-            <
-            br / >
-            <
-            button type = "submit"
-            className = "btn btn-primary" >
-            Añadir { " " } <
-            /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            /div>
-        );
-    }
+	render() {
+		return (
+			<div className='col-md-6 offset-md-3'>
+				<div className='card card-body'>
+					<h4>Crear nueva factura de servicio</h4>
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Id del servicio'
+							name='id_servicio'
+							required
+							onChange={this.onInputChange}
+							value={this.state.id_servicio}
+						/>
+					</div>
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Id del usuario'
+							name='id_usuario'
+							required
+							onChange={this.onInputChange}
+							value={this.state.id_usuario}
+						/>
+					</div>
+
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Id del cliente'
+							name='id_cliente'
+							required
+							onChange={this.onInputChange}
+							value={this.state.id_cliente}
+						/>
+					</div>
+
+					<div className='input-group mb-3'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Id del estado de factura'
+							name='id_estadofactura'
+							required
+							onChange={this.onInputChange}
+							value={this.state.id_estadofactura}
+						/>
+					</div>
+					<form onSubmit={this.onSubmit}>
+						<br />
+						<button type='submit' className='btn btn-primary'>
+							Añadir
+						</button>
+					</form>
+				</div>
+			</div>
+		);
+	}
 }

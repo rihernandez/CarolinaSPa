@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
 
 function EditFormCitas(props) {
-
     let { id } = useParams();
     const [cita, setCita] = useState([]);
 
-    useEffect(() =>{
-        props.getCita(id)
-             .then(response => setCita(response.data));
+    useEffect(() => {
+        props.getCita(id).then((response) => setCita(response));
     }, [props, id]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setCita({ ...cita, [name]: value});
-    }
-    
+        setCita({...cita, [name]: value });
+    };
+
     const handleSubmit = (e) => {
-        if(!cita) return;
+        if (!cita) return;
         e.preventDefault();
 
         props.updateCita(id, cita);
-        window.location.href='/citas';
-    }
-    
-    return(
+        window.location.href = "/citas";
+    };
+
+   return(
     <div>
         <h1>Editar estado de factura</h1>
         <button onClick={() => console.log(cita)}>s</button>
