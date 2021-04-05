@@ -82,7 +82,7 @@ class CreateInventario extends Component {
             window.location.href = "/inventarios";
         } else {
             // await axios.post("http://localhost:8990/api/inventario", newInventario);
-            await call("put", `inventario`, newInventario);
+            await call("post", `inventario`, newInventario);
         }
         this.setState({
             producto_id: "",
@@ -115,7 +115,7 @@ class CreateInventario extends Component {
         });
     };
 
-     render() {
+ render() {
         return (
             <div className="row">
                 <div className="col-md-8 mx-auto">

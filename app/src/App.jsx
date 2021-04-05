@@ -89,100 +89,48 @@ function App() {
           <SignIn />
         </Route> */}
 
-        <Route
-          exact
-          path="/proveedor"
-          component={requireAuth(CreateProveedor)}
-        />
-        <Route
-          exact
-          path="/categoria"
-          component={requireAuth(CreateCategoria)}
-        />
-        <Route exact path="/producto" component={requireAuth(CreateProducto)} />
-        <Route exact path="/productos" component={requireAuth(ProductList)} />
-        <Route
-          exact
-          path="/inventario"
-          component={requireAuth(CreateInventario)}
-        />
-        <Route
-          exact
-          path="/inventarios"
-          component={requireAuth(InventarioList)}
-        />
+        <Route path="/proveedor" component={requireAuth(CreateProveedor)} />
+        <Route path="/categoria" component={requireAuth(CreateCategoria)} />
+        <Route path="/producto" component={requireAuth(CreateProducto)} />
+        <Route path="/productos" component={requireAuth(ProductList)} />
+        <Route path="/inventario" component={requireAuth(CreateInventario)} />
+        <Route path="/inventarios" component={requireAuth(InventarioList)} />
         <Route exact path="/edit/:id" component={requireAuth(CreateProducto)} />
         <Route
-          exact
           path="/edit-proveedor/:id"
           component={requireAuth(CreateProveedor)}
         />
         <Route
-          exact
           path="/edit-categoria/:id"
           component={requireAuth(CreateCategoria)}
         />
         <Route
-          exact
           path="/edit-inventario/:id"
           component={requireAuth(CreateInventario)}
         />
-        <Route
-          exact
-          path="/createfactdeta"
-          component={requireAuth(CreateFactDeta)}
-        />
+        <Route path="/createfactdeta" component={requireAuth(CreateFactDeta)} />
         <Route exact path="/factserv" component={requireAuth(FactServicio)} />
+        <Route path="/factservdeta" component={requireAuth(FactServDeta)} />
+        <Route path="/serv" component={requireAuth(Servicio)} />
+        <Route path="/Perf" component={requireAuth(Perfiles)} />
+        <Route path="/createfactserv" component={requireAuth(CreateFactServ)} />
+        <Route path="/createserv" component={requireAuth(CreateServicios)} />
+        <Route path="/createperf" component={requireAuth(CreatePerfiles)} />
+        <Route path="/editserv/:id" component={requireAuth(CreateServicios)} />
+        <Route path="/editperf/:id" component={requireAuth(CreatePerfiles)} />
         <Route
-          exact
-          path="/factservdeta"
-          component={requireAuth(FactServDeta)}
-        />
-        <Route exact path="/serv" component={requireAuth(Servicio)} />
-        <Route exact path="/Perf" component={requireAuth(Perfiles)} />
-        <Route
-          exact
-          path="/createfactserv"
-          component={requireAuth(CreateFactServ)}
-        />
-        <Route
-          exact
-          path="/createserv"
-          component={requireAuth(CreateServicios)}
-        />
-        <Route
-          exact
-          path="/createperf"
-          component={requireAuth(CreatePerfiles)}
-        />
-        <Route
-          exact
-          path="/editserv/:id"
-          component={requireAuth(CreateServicios)}
-        />
-        <Route
-          exact
-          path="/editperf/:id"
-          component={requireAuth(CreatePerfiles)}
-        />
-        <Route
-          exact
           path="/editfactserv/:id"
           component={requireAuth(CreateFactServ)}
         />
         <Route
-          exact
           path="/editfactdeta/:id"
           component={requireAuth(CreateFactDeta)}
         />
-        <Route
-          exact
-          path="/estadofactura"
-          component={requireAuth(EstadoFactura)}
-        />
-        <Route exact path="/clientes" component={requireAuth(Clientes)} />
-        <Route exact path="/estadocita" component={requireAuth(EstadoCita)} />
-        <Route exact path="/citas" component={requireAuth(Citas)} />
+        <Route path="/estadofactura" component={requireAuth(EstadoFactura)} />
+
+        <Route path="/clientes" component={requireAuth(Clientes)} />
+        <Route path="/estadocita" component={requireAuth(EstadoCita)} />
+        <Route path="/citas" component={requireAuth(Citas)} />
       </div>
     </Router>
   );

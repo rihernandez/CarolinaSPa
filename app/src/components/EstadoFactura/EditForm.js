@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from "react-router-dom";
 
 function EditFormEstadoFactura(props) {
-
     let { id } = useParams();
     const [descripcion, setDescripcion] = useState([]);
 
-    useEffect(() =>{
-        props.getFactura(id, setDescripcion)
-             .then(response => setDescripcion(response.data));
+    useEffect(() => {
+        props
+            .getFactura(id, setDescripcion)
+            .then((response) => setDescripcion(response));
     }, [props, id]);
 
     const handleInputChange = (event) => {
         const { value } = event.target;
         setDescripcion(value);
-    }
-    
+    };
+
     const handleButtonClick = (e) => {
-        if(!descripcion) return;
+        if (!descripcion) return;
 
         e.preventDefault();
-        props.updateFactura(id, {Descripcion: descripcion});
-        window.location.href='/estadofactura';
-    }
-    
+        props.updateFactura(id, { Descripcion: descripcion });
+        window.location.href = "/estadofactura";
+    };
+
     const handleKeyDown = (event) => {
-        if(event.key !== 'Enter' || !descripcion) return;
+        if (event.key !== "Enter" || !descripcion) return;
 
         event.preventDefault();
-        props.updateFactura(id, {Descripcion: descripcion});
-        window.location.href='/estadofactura';
-    }
+        props.updateFactura(id, { Descripcion: descripcion });
+        window.location.href = "/estadofactura";
+    };
 
-    return(
+       return(
     <div>
         <h1>Editar estado de factura</h1>
         <Form className="shadow p-3 mb-5 bg-white rounded">

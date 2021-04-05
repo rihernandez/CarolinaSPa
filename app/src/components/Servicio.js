@@ -21,13 +21,13 @@ export default class Servicio extends Component {
     }
 
     deleteServicio = async(id) => {
-        await call("delete", `servicios/${id}`);
+        await call("delete", `servicios/` + id);
 
         // await axios.delete("http://localhost:8990/api/servicios/" + id);
         this.getServicios();
     };
 
-render() {
+ render() {
 		return (
 			<div className='row container'>
 				<Link className='btn btn-primary col-3 m-1' to='/createserv'>

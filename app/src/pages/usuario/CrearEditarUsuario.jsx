@@ -61,6 +61,9 @@ const CrearEditarUsuario = ({ history, match }) => {
   const handleCrearUsuario = async (user) => {
     try {
       await call("post", `usuario`, user);
+      // SavePoint
+      // Para enviar correo
+      // console.log(user);
       swal(
         "El usuario ha sido creado con exito",
         `Presiona "OK" para continuar`,

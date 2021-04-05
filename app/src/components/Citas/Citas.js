@@ -14,7 +14,7 @@ function Citas() {
 
     const getAllCitas = async() => {
         try {
-            const response = await call("get", `citas`);
+            const response = await call("get", `citas/`);
 
             return response;
         } catch (err) {
@@ -24,7 +24,7 @@ function Citas() {
 
     const getCita = async(id) => {
         try {
-            const response = await call("get", `citas/${id}`);
+            const response = await call("get", `citas/` + id);
             return response;
         } catch (err) {
             console.log(err);
@@ -33,7 +33,7 @@ function Citas() {
 
     const createCita = async(cita) => {
         try {
-            await call("post", `citas`, {
+            await call("post", `citas/`, {
                 ID_Servicio: cita.ID_Servicio,
                 ID_EstadoCita: cita.ID_EstadoCita,
                 ID_Cliente: cita.ID_Cliente,
@@ -45,7 +45,7 @@ function Citas() {
 
     const updateCita = async(id, cita) => {
         try {
-            await call("put", `citas/${id}`, {
+            await call("put", `citas/` + id, {
                 ID_Servicio: cita.ID_Servicio,
                 ID_EstadoCita: cita.ID_EstadoCita,
                 ID_Cliente: cita.ID_Cliente,
@@ -57,7 +57,7 @@ function Citas() {
 
     const deleteCita = async(id) => {
         try {
-            await call("delete", `citas/${id}`);
+            await call("delete", `citas/` + id);
         } catch (err) {
             console.log(err);
         }
@@ -107,48 +107,18 @@ function Citas() {
 
     let { path, url } = useRouteMatch();
 
-    return ( <
-        div >
-        <
-        Switch >
-        <
-        Route path = { `${path}/create` }
-        render = {
-            () => ( <
-                CreateForm createCita = { createCita }
-                servicios = { servicios }
-                estadoCitas = { estadoCitas }
-                clientes = { clientes }
-                />
-            )
-        }
-        />{" "} <
-        Route path = { `${path}/edit/:id` }
-        render = {
-            () => ( <
-                EditForm getCita = { getCita }
-                updateCita = { updateCita }
-                createCita = { createCita }
-                servicios = { servicios }
-                estadoCitas = { estadoCitas }
-                clientes = { clientes }
-                />
-            )
-        }
-        />{" "} <
-        Route exact path = { `${path}` } >
-        <
-        Link className = "btn btn-primary"
-        to = { `${url}/create` } > { " " }
-        Crear Cita { " " } <
-        /Link>{" "} <
-        Table citas = { citas }
-        deleteCita = { deleteCita }
-        />{" "} <
-        /Route>{" "} <
-        /Switch>{" "} <
-        /div>
-    );
+    return (
+    <div>
+      <Switch>
+        <Route path={`${path}/create`} render={() => <CreateForm createCita={createCita} servicios={servicios} estadoCitas={estadoCitas} clientes={clientes}/>}/>
+        <Route path={`${path}/edit/:id`} render={() => <EditForm getCita={getCita} updateCita={updateCita} createCita={createCita} servicios={servicios} estadoCitas={estadoCitas} clientes={clientes}/>}/>
+        <Route exact path={`${path}`}>
+          <Link className="btn btn-primary" to={`${url}/create`}> Crear Cita </Link>
+          <Table citas={citas} deleteCita={deleteCita}/>
+        </Route>
+      </Switch>
+    </div>
+  );  
 }
 
 export default Citas;

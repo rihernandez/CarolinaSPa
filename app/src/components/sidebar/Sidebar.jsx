@@ -10,9 +10,15 @@ const links = [
 ];
 
 const linksAdmin = [
+  { icon: "fas fa-boxes", path: "/producto", title: "Crear Producto" },
   { icon: "fas fa-boxes", path: "/productos", title: "Productos" },
   { icon: "fas fa-user-plus", path: "/serv", title: "Servicios" },
   { icon: "fa fa-user-tie", path: "/proveedor", title: "Proveedores" },
+  {
+    icon: "fas fa-dolly-flatbed",
+    path: "/inventario",
+    title: "Crear Inventario",
+  },
   { icon: "fas fa-dolly-flatbed", path: "/inventarios", title: "Inventarios" },
   { icon: "fas fa-list-ul", path: "/categoria", title: "Categorias" },
   { icon: "fas fa-users", path: "/usuario", title: "Usuarios" },

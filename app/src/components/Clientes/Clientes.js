@@ -15,7 +15,7 @@ function Clientes() {
 
     const getAllClientes = async() => {
         try {
-            const response = await call("get", `clientes`);
+            const response = await call("get", `clientes/`);
             return response;
         } catch (err) {
             console.log(err);
@@ -24,7 +24,7 @@ function Clientes() {
 
     const getCliente = async(id) => {
         try {
-            const response = await call("get", `clientes/${id}`);
+            const response = await call("get", `clientes/` + id);
             return response;
         } catch (err) {
             console.log(err);
@@ -33,7 +33,7 @@ function Clientes() {
 
     const createCliente = async(cliente) => {
         try {
-            await call("post", `clientes`, {
+            await call("post", `clientes/`, {
                 Nombre: cliente.Nombre,
                 Apellidos: cliente.Apellidos,
                 Cedula: cliente.Cedula,
@@ -51,7 +51,7 @@ function Clientes() {
 
     const updateCliente = async(id, cliente) => {
         try {
-            await call("put", `clientes`, {
+            await call("put", `clientes/` + id, {
                 Nombre: cliente.Nombre,
                 Apellidos: cliente.Apellidos,
                 Cedula: cliente.Cedula,
@@ -69,7 +69,7 @@ function Clientes() {
 
     const deleteCliente = async(id) => {
         try {
-            await call("delete", `clientes/${id}`);
+            await call("delete", `clientes/` + id);
         } catch (err) {
             console.log(err);
         }
@@ -77,40 +77,18 @@ function Clientes() {
 
     let { path, url } = useRouteMatch();
 
-    return ( <
-        div >
-        <
-        Switch >
-        <
-        Route path = { `${path}/create` }
-        render = {
-            () => < CreateForm createCliente = { createCliente }
-            />} /
-            >
-            <
-            Route
-            path = { `${path}/edit/:id` }
-            render = {
-                () => ( <
-                    EditForm getCliente = { getCliente }
-                    updateCliente = { updateCliente }
-                    />
-                )
-            }
-            />{" "} <
-            Route exact path = { `${path}` } >
-            <
-            Link className = "btn btn-primary"
-            to = { `${url}/create` } > { " " }
-            Crear Cliente { " " } <
-            /Link>{" "} <
-            Table clientes = { clientes }
-            deleteCliente = { deleteCliente }
-            />{" "} <
-            /Route>{" "} <
-            /Switch>{" "} <
-            /div>
-        );
-    }
+  return (
+    <div>
+      <Switch>
+        <Route path={`${path}/create`} render={() => <CreateForm createCliente={createCliente}/>}/>
+        <Route path={`${path}/edit/:id`} render={() => <EditForm getCliente={getCliente} updateCliente={updateCliente}/>}/>
+        <Route exact path={`${path}`}>
+          <Link className="btn btn-primary" to={`${url}/create`}> Crear Cliente </Link>
+          <Table clientes={clientes} deleteCliente={deleteCliente}/>
+        </Route>
+      </Switch>
+    </div>
+  );  
+}
 
-    export default Clientes;
+export default Clientes;

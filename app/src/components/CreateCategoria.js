@@ -78,12 +78,12 @@ class CreateCategoria extends Component {
     };
 
     deleteCategoria = async(id) => {
-        await call("delete", `categoria/${id}`);
+        await call("delete", `categoria/` + id);
         // await axios.delete("http://localhost:8990/api/categoria/" + id);
         this.getCategorias();
     };
 
-    render() {
+render() {
         return (
             <div className="row">
                 <div className="col-md-4">

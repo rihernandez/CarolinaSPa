@@ -14,7 +14,7 @@ export default class CreateServicio extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id) {
-            const res = await call("get", `servicios` + this.props.match.params.id);
+            const res = await call("get", `servicios/` + this.props.match.params.id);
 
             // const res = await axios.get('http://localhost:8990/api/servicios/' + this.props.match.params.id);
             console.log(res);

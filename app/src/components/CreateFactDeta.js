@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
+import { call } from "../utils/api";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -14,10 +16,15 @@ export default class CreateFactServDeta extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id) {
-            const res = await axios.get(
-                "http://localhost:8990/api/facturaserviciodet/" +
-                this.props.match.params.id
+            const res = await call(
+                "get",
+                `facturaserviciodet/` + this.props.match.params.id
             );
+
+            // const res = await axios.get(
+            //     "http://localhost:8990/api/facturaserviciodet/" +
+            //     this.props.match.params.id
+            // );
 
             this.setState({
                 id_facturaservicio: res.id_facturaservicio,
@@ -36,16 +43,22 @@ export default class CreateFactServDeta extends Component {
             cantidadMinima: this.state.cantidadMinima,
         };
         if (this.state.editing) {
-            await axios.put(
-                "http://localhost:8990/api/facturaserviciodet/" +
-                this.props.match.params.id,
+            await call(
+                "put",
+                `facturaserviciodet/` + this.props.match.params.id,
                 newFactServDeta
             );
+            // await axios.put(
+            //     "http://localhost:8990/api/facturaserviciodet/" +
+            //     this.props.match.params.id,
+            //     newFactServDeta
+            // );
         } else {
-            await axios.post(
-                "http://localhost:8990/api/facturaserviciodet",
-                newFactServDeta
-            );
+            await call("post", `facturaserviciodet`, newFactServDeta);
+            // await axios.post(
+            //     "http://localhost:8990/api/facturaserviciodet",
+            //     newFactServDeta
+            // );
         }
 
         window.location.href = "/factservdeta";
@@ -62,62 +75,63 @@ export default class CreateFactServDeta extends Component {
         });
     };
 
-    render() {
-        return ( <
-            div className = "col-md-6 offset-md-3" >
-            <
-            div className = "card card-body" >
-            <
-            h4 > Añadir detalles de factura < /h4>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Id de la factura del servicio"
-            name = "id_facturaservicio"
-            required onChange = { this.onInputChange }
-            value = { this.state.id_facturaservicio }
-            />{" "} <
-            /div>{" "} <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Cantidad de servicios"
-            name = "cantidadServicio"
-            required onChange = { this.onInputChange }
-            value = { this.state.cantidadServicio }
-            />{" "} <
-            /div> <
-            div className = "form-group" >
-            <
-            DatePicker className = "form-control"
-            selected = { this.state.fechaVencimiento }
-            onChange = { this.onChangeFechaVenc }
-            value = { this.state.fechaVencimiento }
-            />{" "} <
-            /div> <
-            div className = "form-group" >
-            <
-            input type = "text"
-            className = "form-control"
-            placeholder = "Cantidad Minima"
-            name = "cantidadMinima"
-            required onChange = { this.onInputChange }
-            value = { this.state.cantidadMinima }
-            />{" "} <
-            /div> <
-            form onSubmit = { this.onSubmit } >
-            <
-            br / >
-            <
-            button type = "submit"
-            className = "btn btn-primary" >
-            Añadir { " " } <
-            /button>{" "} <
-            /form>{" "} <
-            /div>{" "} <
-            /div>
-        );
-    }
+	render() {
+		return (
+			<div className='col-md-6 offset-md-3'>
+				<div className='card card-body'>
+					<h4>Añadir detalles de factura</h4>
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Id de la factura del servicio'
+							name='id_facturaservicio'
+							required
+							onChange={this.onInputChange}
+							value={this.state.id_facturaservicio}
+						/>
+					</div>
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Cantidad de servicios'
+							name='cantidadServicio'
+							required
+							onChange={this.onInputChange}
+							value={this.state.cantidadServicio}
+						/>
+					</div>
+
+					<div className='form-group'>
+						<DatePicker
+							className='form-control'
+							selected={this.state.fechaVencimiento}
+							onChange={this.onChangeFechaVenc}
+							value={this.state.fechaVencimiento}
+						/>
+					</div>
+
+					<div className='form-group'>
+						<input
+							type='text'
+							className='form-control'
+							placeholder='Cantidad Minima'
+							name='cantidadMinima'
+							required
+							onChange={this.onInputChange}
+							value={this.state.cantidadMinima}
+						/>
+					</div>
+
+					<form onSubmit={this.onSubmit}>
+						<br />
+						<button type='submit' className='btn btn-primary'>
+							Añadir
+						</button>
+					</form>
+				</div>
+			</div>
+		);
+	}
 }

@@ -17,7 +17,7 @@ function EstadoFactura() {
 
     const getAllFacturas = async() => {
         try {
-            const response = await call("get", `estadofactura`);
+            const response = await call("get", `estadofactura/`);
 
             return response;
         } catch (err) {
@@ -27,7 +27,7 @@ function EstadoFactura() {
 
     const getFactura = async(id) => {
         try {
-            const response = await call("get", `estadofactura/${id}`);
+            const response = await call("get", `estadofactura/` + id);
             return response;
         } catch (err) {
             console.log(err);
@@ -46,7 +46,7 @@ function EstadoFactura() {
 
     const updateFactura = async(id, factura) => {
         try {
-            await call("put", `estadofactura/${id}`, {
+            await call("put", `estadofactura/` + id, {
                 Descripcion: factura.Descripcion,
             });
         } catch (err) {
@@ -56,7 +56,7 @@ function EstadoFactura() {
 
     const deleteFactura = async(id) => {
         try {
-            await call("delete", `estadofactura/${id}`);
+            await call("delete", `estadofactura/` + id);
         } catch (err) {
             console.log(err);
         }
@@ -64,41 +64,18 @@ function EstadoFactura() {
 
     let { path, url } = useRouteMatch();
 
-    return ( <
-        div >
-        <
-        Switch >
-        <
-        Route path = { `${path}/create` }
-        render = {
-            () => < CreateForm createFactura = { createFactura }
-            />} /
-            >
-            <
-            Route
-            path = { `${path}/edit/:id` }
-            render = {
-                () => ( <
-                    EditForm getFactura = { getFactura }
-                    updateFactura = { updateFactura }
-                    />
-                )
-            }
-            />{" "} <
-            Route exact path = { `${path}` } >
-            <
-            Link className = "btn btn-primary"
-            to = { `${url}/create` } > { " " }
-            Crear Estado de Factura { " " } <
-            /Link>{" "} <
-            Table
-            estadoFactura = { estadoFactura }
-            deleteFactura = { deleteFactura }
-            />{" "} <
-            /Route>{" "} <
-            /Switch>{" "} <
-            /div>
-        );
-    }
+ return (
+    <div>
+      <Switch>
+        <Route path={`${path}/create`} render={() => <CreateForm createFactura={createFactura}/>}/>
+        <Route path={`${path}/edit/:id`} render={() => <EditForm getFactura={getFactura} updateFactura={updateFactura}/>}/>
+        <Route exact path={`${path}`}>
+          <Link className="btn btn-primary" to={`${url}/create`}> Crear Estado de Factura </Link>
+          <Table estadoFactura={estadoFactura} deleteFactura={deleteFactura}/>
+        </Route>
+      </Switch>
+    </div>
+  );  
+}
 
-    export default EstadoFactura;
+export default EstadoFactura;
