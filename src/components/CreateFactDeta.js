@@ -1,59 +1,79 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { Component } from "react";
+// import axios from "axios";
+import { call } from "../utils/api";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateFactServDeta extends Component {
-	state = {
-		id_facturaservicio: '',
-		cantidadServicio: '',
-		fechaVencimiento: '',
-		cantidadMinima: '',
-		editing: false
-	};
+    state = {
+        id_facturaservicio: "",
+        cantidadServicio: "",
+        fechaVencimiento: "",
+        cantidadMinima: "",
+        editing: false,
+    };
 
-	async componentDidMount() {
-		if (this.props.match.params.id) {
-			const res = await axios.get('http://localhost:8990/api/facturaserviciodet/' + this.props.match.params.id);
+    async componentDidMount() {
+        if (this.props.match.params.id) {
+            const res = await call(
+                "get",
+                `facturaserviciodet/` + this.props.match.params.id
+            );
 
-			this.setState({
-				id_facturaservicio: res.data.id_facturaservicio,
-				cantidadServicio: res.data.cantidadServicio,
-				cantidadMinima: res.data.cantidadMinima,
-				editing: true
-			});
-		}
-	}
-	onSubmit = async (e) => {
-		e.preventDefault();
-		const newFactServDeta = {
-			id_facturaservicio: this.state.id_facturaservicio,
-			cantidadServicio: this.state.cantidadServicio,
-			fechaVencimiento: this.state.fechaVencimiento,
-			cantidadMinima: this.state.cantidadMinima
-		};
-		if (this.state.editing) {
-			await axios.put(
-				'http://localhost:8990/api/facturaserviciodet/' + this.props.match.params.id,
-				newFactServDeta
-			);
-		} else {
-			await axios.post('http://localhost:8990/api/facturaserviciodet', newFactServDeta);
-		}
+            // const res = await axios.get(
+            //     "http://localhost:8990/api/facturaserviciodet/" +
+            //     this.props.match.params.id
+            // );
 
-		window.location.href = '/factservdeta';
-	};
-	onInputChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+            this.setState({
+                id_facturaservicio: res.id_facturaservicio,
+                cantidadServicio: res.cantidadServicio,
+                cantidadMinima: res.cantidadMinima,
+                editing: true,
+            });
+        }
+    }
+    onSubmit = async(e) => {
+        e.preventDefault();
+        const newFactServDeta = {
+            id_facturaservicio: this.state.id_facturaservicio,
+            cantidadServicio: this.state.cantidadServicio,
+            fechaVencimiento: this.state.fechaVencimiento,
+            cantidadMinima: this.state.cantidadMinima,
+        };
+        if (this.state.editing) {
+            await call(
+                "put",
+                `facturaserviciodet/` + this.props.match.params.id,
+                newFactServDeta
+            );
+            // await axios.put(
+            //     "http://localhost:8990/api/facturaserviciodet/" +
+            //     this.props.match.params.id,
+            //     newFactServDeta
+            // );
+        } else {
+            await call("post", `facturaserviciodet`, newFactServDeta);
+            // await axios.post(
+            //     "http://localhost:8990/api/facturaserviciodet",
+            //     newFactServDeta
+            // );
+        }
 
-	onChangeFechaVenc = (date) => {
-		this.setState({
-			fechaVencimiento: date
-		});
-	};
+        window.location.href = "/factservdeta";
+    };
+    onInputChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    onChangeFechaVenc = (date) => {
+        this.setState({
+            fechaVencimiento: date,
+        });
+    };
 
 	render() {
 		return (

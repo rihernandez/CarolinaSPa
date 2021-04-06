@@ -1,27 +1,33 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+// import axios from 'axios'
+import { call } from "../utils/api";
 
-class ProductsList extends Component{
+import { Link } from "react-router-dom";
+
+class ProductsList extends Component {
     state = {
-        productos: []
-    }
+        productos: [],
+    };
 
-    componentDidMount(){
+    componentDidMount() {
         this.getResult();
     }
 
-    getResult = async () => {
-        const prod = await axios.get('http://localhost:8990/api/producto');
-        this.setState({
-            productos: prod.data,
-        })
-    }
+    getResult = async() => {
+        const prod = await call("get", `producto`);
 
-    deleteProduct = async id => {
-        axios.delete('http://localhost:8990/api/producto/' + id);
-        window.location.href = "/productos"
-    }
+        // const prod = await axios.get('http://localhost:8990/api/producto');
+        this.setState({
+            productos: prod,
+        });
+    };
+
+    deleteProduct = async(id) => {
+        await call("delete", `producto/` + id);
+
+        // axios.delete('http://localhost:8990/api/producto/' + id);
+        window.location.href = "/productos";
+    };
 
     render(){
         return(

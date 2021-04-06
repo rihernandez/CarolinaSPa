@@ -1,50 +1,57 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { Component } from "react";
+// import axios from 'axios';
+import { call } from "../utils/api";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateServicio extends Component {
-	state = {
-		servicio: '',
-		descripcion: '',
-		precio: '',
-		editing: false
-	};
+    state = {
+        servicio: "",
+        descripcion: "",
+        precio: "",
+        editing: false,
+    };
 
-	async componentDidMount() {
-		if (this.props.match.params.id) {
-			const res = await axios.get('http://localhost:8990/api/servicios/' + this.props.match.params.id);
-			console.log(res);
+    async componentDidMount() {
+        if (this.props.match.params.id) {
+            const res = await call("get", `servicios/` + this.props.match.params.id);
 
-			this.setState({
-				servicio: res.data.servicio,
-				descripcion: res.data.descripcion,
-				precio: res.data.precio,
-				editing: true
-			});
-		}
-	}
-	onSubmit = async (e) => {
-		e.preventDefault();
-		const newServicio = {
-			servicio: this.state.servicio,
-			descripcion: this.state.descripcion,
-			precio: this.state.precio
-		};
-		if (this.state.editing) {
-			await axios.put('http://localhost:8990/api/servicios/' + this.props.match.params.id, newServicio);
-		} else {
-			await axios.post('http://localhost:8990/api/servicios', newServicio);
-		}
+            // const res = await axios.get('http://localhost:8990/api/servicios/' + this.props.match.params.id);
+            console.log(res);
 
-		window.location.href = '/serv';
-	};
-	onInputChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+            this.setState({
+                servicio: res.servicio,
+                descripcion: res.descripcion,
+                precio: res.precio,
+                editing: true,
+            });
+        }
+    }
+    onSubmit = async(e) => {
+        e.preventDefault();
+        const newServicio = {
+            servicio: this.state.servicio,
+            descripcion: this.state.descripcion,
+            precio: this.state.precio,
+        };
+        if (this.state.editing) {
+            await call("put", `servicios/` + this.props.match.params.id, newServicio);
+            // await axios.put('http://localhost:8990/api/servicios/' + this.props.match.params.id, newServicio);
+        } else {
+            await call("post", `servicios`, newServicio);
 
-	render() {
+            // await axios.post('http://localhost:8990/api/servicios', newServicio);
+        }
+
+        window.location.href = "/serv";
+    };
+    onInputChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    };
+
+render() {
 		return (
 			<div className='col-md-6 offset-md-3'>
 				<div className='card card-body'>

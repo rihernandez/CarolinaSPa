@@ -1,72 +1,89 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+// import axios from "axios";
+import { call } from "../utils/api";
+
+import { Link } from "react-router-dom";
 
 class CreateCategoria extends Component {
-
     state = {
         categorias: [],
-        categoria: '',
-        descripcion: '',
+        categoria: "",
+        descripcion: "",
         editing: false,
-        id_Categoria: ''
-    }
+        id_Categoria: "",
+    };
 
     async componentDidMount() {
         this.getCategorias();
 
         if (this.props.match.params.id) {
-            const res = await axios.get('http://localhost:8990/api/categoria/' + this.props.match.params.id);
+            const res = await call("get", `categoria/` + this.props.match.params.id);
+
+            // const res = await axios.get('http://localhost:8990/api/categoria/' + this.props.match.params.id);
             this.setState({
-                categoria: res.data.categoria,
-                descripcion: res.data.descripcion,
+                categoria: res.categoria,
+                descripcion: res.descripcion,
                 editing: true,
-                id_Categoria: this.props.match.params.id
-            })
+                id_Categoria: this.props.match.params.id,
+            });
         }
     }
-    getCategorias = async () => {
-        const res = await axios.get('http://localhost:8990/api/categoria');
+    getCategorias = async() => {
+        const res = await call("get", `categoria`);
+
+        // const res = await axios.get('http://localhost:8990/api/categoria');
         this.setState({
-            categorias: res.data
+            categorias: res,
         });
-    }
+    };
 
     onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
-    }
+    };
 
-    onSubmit = async (e) => {
+    onSubmit = async(e) => {
         e.preventDefault();
         if (this.state.editing) {
-            await axios.put('http://localhost:8990/api/categoria/' + this.state.id_Categoria, {
+            await call("put", `categoria/` + this.state.id_Categoria, {
                 categoria: this.state.categoria,
-                descripcion: this.state.descripcion
-            })
-            window.location.href = "/categoria"
-        } else {
-            await axios.post('http://localhost:8990/api/categoria', {
-                categoria: this.state.categoria,
-                descripcion: this.state.descripcion
+                descripcion: this.state.descripcion,
             });
+            // await axios.put(
+            //     "http://localhost:8990/api/categoria/" + this.state.id_Categoria, {
+            //         categoria: this.state.categoria,
+            //         descripcion: this.state.descripcion,
+            //     }
+            // );
+            window.location.href = "/categoria";
+        } else {
+            await call("post", `categoria`, {
+                categoria: this.state.categoria,
+                descripcion: this.state.descripcion,
+            });
+
+            // await axios.post("http://localhost:8990/api/categoria", {
+            //     categoria: this.state.categoria,
+            //     descripcion: this.state.descripcion,
+            // });
             this.getCategorias();
         }
         this.setState({
-            categoria: '',
-            descripcion: '',
+            categoria: "",
+            descripcion: "",
             editing: false,
-            id_Categoria: ''
-        })
-    }
+            id_Categoria: "",
+        });
+    };
 
-    deleteCategoria = async (id) => {
-        await axios.delete('http://localhost:8990/api/categoria/' + id);
+    deleteCategoria = async(id) => {
+        await call("delete", `categoria/` + id);
+        // await axios.delete("http://localhost:8990/api/categoria/" + id);
         this.getCategorias();
-    }
+    };
 
-    render() {
+render() {
         return (
             <div className="row">
                 <div className="col-md-4">

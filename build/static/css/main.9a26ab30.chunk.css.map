@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/index.css","webpack://src/App.css"],"names":[],"mappings":"AAAA,KACI,oDAAA,CACA,qBAAsB,CACtB,yBAEJ,CCLA,OACE,iBACF","file":"main.9a26ab30.chunk.css","sourcesContent":["body{\n    background-image: url(\"bg.webp\");\n    background-size: cover;\n    background-position: fixed;\n    \n}","nav li {\n  margin-right: 10px;\n}"]}

@@ -1,29 +1,34 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+// import axios from 'axios'
+import { call } from "../utils/api";
+
+import { Link } from "react-router-dom";
 
 class InventariosList extends Component {
     state = {
-        inventarios: []
-    }
+        inventarios: [],
+    };
 
     componentDidMount() {
         this.getInventarios();
     }
 
-    getInventarios = async () => {
-        const res = await axios.get('http://localhost:8990/api/inventario');
+    getInventarios = async() => {
+        const res = await call("get", `inventario`);
+
+        // const res = await axios.get('http://localhost:8990/api/inventario');
         this.setState({
-            inventarios: res.data,
-        })
-    }
+            inventarios: res,
+        });
+    };
 
-    delete = async (id) => {
-        axios.delete('http://localhost:8990/api/inventario/' + id);
-        window.location.href = '/inventarios';
-    }
+    delete = async(id) => {
+        await call("delete", `inventario/` + id);
+        // axios.delete('http://localhost:8990/api/inventario/' + id);
+        window.location.href = "/inventarios";
+    };
 
-    render() {
+   render() {
         return (
             <div className="row">
                 <table className="table table-hover table-sm">

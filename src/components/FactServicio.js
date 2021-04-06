@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+// import axios from 'axios';
+import { call } from "../utils/api";
 
 export default class FactServicio extends Component {
-	state = {
-		factServicios: []
-	};
+    state = {
+        factServicios: [],
+    };
 
-	componentDidMount() {
-		this.getfactServicios();
-	}
+    componentDidMount() {
+        this.getfactServicios();
+    }
 
-	async getfactServicios() {
-		const res = await axios.get('http://localhost:8990/api/facturaservicio');
-		this.setState({ factServicios: res.data });
-	}
+    async getfactServicios() {
+        const res = await call("get", `facturaservicio`);
 
-	deletefactServicio = async (id) => {
-		await axios.delete('http://localhost:8990/api/facturaservicio/' + id);
-		this.getfactServicios();
-	};
+        // const res = await axios.get('http://localhost:8990/api/facturaservicio');
+        this.setState({ factServicios: res });
+    }
 
-	render() {
+    deletefactServicio = async(id) => {
+        await call("delete", `facturaservicio/` + id);
+        // await axios.delete('http://localhost:8990/api/facturaservicio/' + id);
+        this.getfactServicios();
+    };
+
+   render() {
 		return (
 			<div className='row container'>
 				<Link className='btn btn-primary col-3 m-1' to='/createfactserv'>

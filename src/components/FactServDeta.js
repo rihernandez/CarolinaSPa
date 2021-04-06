@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+// import axios from 'axios';
+import { call } from "../utils/api";
 
 export default class FactServDeta extends Component {
-	state = {
-		factServDetalles: []
-	};
+    state = {
+        factServDetalles: [],
+    };
 
-	componentDidMount() {
-		this.getfactServDetalles();
-	}
+    componentDidMount() {
+        this.getfactServDetalles();
+    }
 
-	async getfactServDetalles() {
-		const res = await axios.get('http://localhost:8990/api/facturaserviciodet');
-		this.setState({ factServDetalles: res.data });
-	}
-	deletefactServdeta = async (id_facturaserviciodet) => {
-		await axios.delete('http://localhost:8990/api/facturaserviciodet/' + id_facturaserviciodet);
-		this.getfactServDetalles();
-	};
+    async getfactServDetalles() {
+        const res = await call("get", `facturaserviciodet`);
 
-	render() {
+        // const res = await axios.get('http://localhost:8990/api/facturaserviciodet');
+        this.setState({ factServDetalles: res });
+    }
+    deletefactServdeta = async(id_facturaserviciodet) => {
+        await call("delete", `facturaservicio/` + id_facturaserviciodet);
+
+        // await axios.delete('http://localhost:8990/api/facturaserviciodet/' + id_facturaserviciodet);
+        this.getfactServDetalles();
+    };
+
+render() {
 		return (
 			<div className='row container'>
 				<Link className='btn btn-primary col-3 m-1' to='/createfactdeta'>

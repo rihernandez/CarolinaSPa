@@ -1,57 +1,64 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { Component } from "react";
+// import axios from 'axios'
+import { call } from "../utils/api";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CreateInventario extends Component {
-
     state = {
         productos: [],
         proveedores: [],
-        proveedor_id: '',
-        producto_id: '',
-        cantidad: '',
-        cantidadMin: '',
-        fechaEnt: '',
-        fechaVen: '',
+        proveedor_id: "",
+        producto_id: "",
+        cantidad: "",
+        cantidadMin: "",
+        fechaEnt: "",
+        fechaVen: "",
         editing: false,
-        id_Inventario: ''
-    }
+        id_Inventario: "",
+    };
 
     async componentDidMount() {
         this.getResult();
 
         if (this.props.match.params.id) {
-            const res = await axios.get('http://localhost:8990/api/inventario/' + this.props.match.params.id);
+            const res = await call("get", `inventario/` + this.props.match.params.id);
+
+            // const res = await axios.get(
+            //     "http://localhost:8990/api/inventario/" + this.props.match.params.id
+            // );
             this.setState({
                 id_Inventario: this.props.match.params.id,
-                producto_id: res.data.id_producto,
-                proveedor_id: res.data.id_proveedor,
-                cantidad: res.data.cantidad,
-                cantidadMin: res.data.cantidadMinima,
-                fechaEnt: new Date(res.data.fechaEntrada),
-                fechaVen: new Date(res.data.fechaVencimiento),
-                editing: true
+                producto_id: res.id_producto,
+                proveedor_id: res.id_proveedor,
+                cantidad: res.cantidad,
+                cantidadMin: res.cantidadMinima,
+                fechaEnt: new Date(res.fechaEntrada),
+                fechaVen: new Date(res.fechaVencimiento),
+                editing: true,
             });
         }
     }
 
-    getResult = async () =>{
+    getResult = async() => {
         //prod = productos
-        const prod = await axios.get('http://localhost:8990/api/producto');
+        const prod = await call("get", `producto`);
+        // const prod = await axios.get("http://localhost:8990/api/producto");
         //prov = proveedores
-        const prov = await axios.get('http://localhost:8990/api/proveedor');
+        const prov = await call("get", `proveedor`);
+
+        // const prov = await axios.get("http://localhost:8990/api/proveedor");
 
         this.setState({
-            productos: prod.data,
-            proveedores: prov.data,
-            proveedor_id: prov.data[0].id_Proveedor,
-            producto_id: prod.data[0].id_Producto
-        })
+            productos: prod,
+            proveedores: prov,
+            proveedor_id: prov[0].id_Proveedor,
+            producto_id: prod[0].id_Producto,
+        });
+    };
 
-    }
-
-    onSubmit = async (e) => {
+    onSubmit = async(e) => {
         e.preventDefault();
         const newInventario = {
             id_proveedor: this.state.proveedor_id,
@@ -59,44 +66,56 @@ class CreateInventario extends Component {
             cantidad: this.state.cantidad,
             cantidadMinima: this.state.cantidadMin,
             fechaEntrada: this.state.fechaEnt,
-            fechaVencimiento: this.state.fechaVen
-        }
+            fechaVencimiento: this.state.fechaVen,
+        };
         if (this.state.editing) {
-            await axios.put('http://localhost:8990/api/inventario/' + this.state.id_Inventario, newInventario);
-            window.location.href = "/inventarios"
+            await call(
+                "put",
+                `inventario/` + this.state.id_Inventario,
+                newInventario
+            );
+
+            // await axios.put(
+            //     "http://localhost:8990/api/inventario/" + this.state.id_Inventario,
+            //     newInventario
+            // );
+            window.location.href = "/inventarios";
         } else {
-            await axios.post('http://localhost:8990/api/inventario', newInventario);
+            // await axios.post("http://localhost:8990/api/inventario", newInventario);
+            await call("post", `inventario`, newInventario);
         }
         this.setState({
-            producto_id: '',
-            proveedor_id: '',
-            cantidad: '',
-            cantidadMin: '',
-            fechaEnt: '',
-            fechaVen: '',
-            editing: '',
-            id_Inventario: ''
-        })
+            producto_id: "",
+            proveedor_id: "",
+            cantidad: "",
+            cantidadMin: "",
+            fechaEnt: "",
+            fechaVen: "",
+            editing: "",
+            id_Inventario: "",
+        });
         this.getResult();
-    }
+    };
 
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-    onChangeDateEnt = date => {
+    onChange = (e) => {
         this.setState({
-            fechaEnt: date
-        })
-    }
+            [e.target.name]: e.target.value,
+        });
+    };
 
-    onChangeDateVen = dates => {
+    onChangeDateEnt = (date) => {
         this.setState({
-            fechaVen: dates
-        })
-    }
+            fechaEnt: date,
+        });
+    };
 
-    render() {
+    onChangeDateVen = (dates) => {
+        this.setState({
+            fechaVen: dates,
+        });
+    };
+
+ render() {
         return (
             <div className="row">
                 <div className="col-md-8 mx-auto">

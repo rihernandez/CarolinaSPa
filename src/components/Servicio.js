@@ -1,27 +1,33 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+// import axios from 'axios';
+import { call } from "../utils/api";
+
+import { Link } from "react-router-dom";
 
 export default class Servicio extends Component {
-	state = {
-		servicios: []
-	};
+    state = {
+        servicios: [],
+    };
 
-	componentDidMount() {
-		this.getServicios();
-	}
+    componentDidMount() {
+        this.getServicios();
+    }
 
-	async getServicios() {
-		const res = await axios.get('http://localhost:8990/api/servicios');
-		this.setState({ servicios: res.data });
-	}
+    async getServicios() {
+        const res = await call("get", `servicios`);
 
-	deleteServicio = async (id) => {
-		await axios.delete('http://localhost:8990/api/servicios/' + id);
-		this.getServicios();
-	};
+        // const res = await axios.get('http://localhost:8990/api/servicios');
+        this.setState({ servicios: res });
+    }
 
-	render() {
+    deleteServicio = async(id) => {
+        await call("delete", `servicios/` + id);
+
+        // await axios.delete("http://localhost:8990/api/servicios/" + id);
+        this.getServicios();
+    };
+
+ render() {
 		return (
 			<div className='row container'>
 				<Link className='btn btn-primary col-3 m-1' to='/createserv'>

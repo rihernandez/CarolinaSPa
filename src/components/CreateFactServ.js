@@ -1,49 +1,65 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+// import axios from 'axios';
+import { call } from "../utils/api";
 
 export default class CreateFactServ extends Component {
-	state = {
-		id_servicio: '',
-		id_usuario: '',
-		id_cliente: '',
-		id_estadofactura: '',
-		editing: false
-	};
+    state = {
+        id_servicio: "",
+        id_usuario: "",
+        id_cliente: "",
+        id_estadofactura: "",
+        editing: false,
+    };
 
-	async componentDidMount() {
-		if (this.props.match.params.id) {
-			const res = await axios.get('http://localhost:8990/api/facturaservicio/' + this.props.match.params.id);
+    async componentDidMount() {
+        if (this.props.match.params.id) {
+            const res = await call(
+                "get",
+                `facturaservicio/` + this.props.match.params.id
+            );
 
-			this.setState({
-				id_servicio: res.data.id_servicio,
-				id_usuario: res.data.id_usuario,
-				id_cliente: res.data.id_cliente,
-				id_estadofactura: res.data.id_estadofactura,
-				editing: true
-			});
-		}
-	}
-	onSubmit = async (e) => {
-		e.preventDefault();
-		const newFactServ = {
-			id_servicio: this.state.id_servicio,
-			id_usuario: this.state.id_usuario,
-			id_cliente: this.state.id_cliente,
-			id_estadofactura: this.state.id_estadofactura
-		};
-		if (this.state.editing) {
-			await axios.put('http://localhost:8990/api/facturaservicio/' + this.props.match.params.id, newFactServ);
-		} else {
-			await axios.post('http://localhost:8990/api/facturaservicio', newFactServ);
-		}
+            // const res = await axios.get('http://localhost:8990/api/facturaservicio/' + this.props.match.params.id);
 
-		window.location.href = '/factserv';
-	};
-	onInputChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
+            this.setState({
+                id_servicio: res.id_servicio,
+                id_usuario: res.id_usuario,
+                id_cliente: res.id_cliente,
+                id_estadofactura: res.id_estadofactura,
+                editing: true,
+            });
+        }
+    }
+    onSubmit = async(e) => {
+        e.preventDefault();
+        const newFactServ = {
+            id_servicio: this.state.id_servicio,
+            id_usuario: this.state.id_usuario,
+            id_cliente: this.state.id_cliente,
+            id_estadofactura: this.state.id_estadofactura,
+        };
+        if (this.state.editing) {
+            await call(
+                "put",
+                `facturaservicio/` + this.props.match.params.id,
+                newFactServ
+            );
+            // await axios.put('http://localhost:8990/api/facturaservicio/' + this.props.match.params.id, newFactServ);
+        } else {
+            await call("post", `facturaservicio`, newFactServ);
+
+            // await axios.post(
+            //     "http://localhost:8990/api/facturaservicio",
+            //     newFactServ
+            // );
+        }
+
+        window.location.href = "/factserv";
+    };
+    onInputChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    };
 
 	render() {
 		return (
